@@ -555,8 +555,8 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
       </svg>
       <div class="vid glass reveal" style="--d:100ms">
         <div class="vid-in">
-          <button class="yt" type="button" data-id="J3VURZjh0a8" data-mp4="video/sergey.mp4" aria-label="Смотреть видео: Сергей рассказывает о своей работе">
-            <img src="video/poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <button class="yt" type="button" data-id="J3VURZjh0a8" data-mp4="video/sergey.mp4 sergey.mp4" aria-label="Смотреть видео: Сергей рассказывает о своей работе">
+            <img src="video/poster.webp" data-alt="poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
             <span class="play" aria-hidden="true"></span>
           </button>
           <p class="vid-note" id="vidNote">Видео открылось в новой вкладке. Чтобы оно играло прямо на сайте, запустите сайт через localhost (см. README).</p>
@@ -1029,7 +1029,11 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
      ========================================================= */
   $$('.yt').forEach((b) => {
     const id = b.dataset.id, img = b.querySelector('img');
-    const fallback = () => { if (!img.src.includes('hqdefault')) img.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; };
+    // Обложка: сначала video/poster.webp, потом poster.webp в корне, в крайнем случае превью с YouTube
+    const fallback = () => {
+      if (img.dataset.alt) { const a = img.dataset.alt; delete img.dataset.alt; img.src = a; return; }
+      if (!img.src.includes('hqdefault')) img.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    };
     img.addEventListener('load', () => { if (img.naturalWidth < 200) fallback(); else img.classList.add('ok'); });
     if (img.complete && img.naturalWidth >= 200) img.classList.add('ok');
     img.addEventListener('error', fallback);
@@ -1054,15 +1058,20 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
       b.replaceWith(f);
     };
     b.addEventListener('click', () => {
-      const mp4 = b.dataset.mp4;
-      if (!mp4) return playYouTube();
+      // Видео ищем по очереди: video/sergey.mp4, затем sergey.mp4 в корне сайта
+      const paths = (b.dataset.mp4 || '').split(/\s+/).filter(Boolean);
+      if (!paths.length) return playYouTube();
       // Своё видео: встроенный плеер браузера, файл грузится только после нажатия
       const v = document.createElement('video');
       v.controls = true; v.playsInline = true; v.preload = 'auto';
       v.poster = img.currentSrc || img.src;
       v.setAttribute('aria-label', 'Сергей рассказывает о своей работе');
-      v.addEventListener('error', () => { if (v.isConnected) { v.replaceWith(b); playYouTube(); } }, { once: true });
-      v.src = mp4;
+      let n = 0;
+      v.addEventListener('error', () => {
+        if (++n < paths.length) { v.src = paths[n]; const p2 = v.play(); if (p2 && p2.catch) p2.catch(() => {}); return; }
+        if (v.isConnected) { v.replaceWith(b); playYouTube(); }
+      });
+      v.src = paths[0];
       b.replaceWith(v);
       const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
     });
