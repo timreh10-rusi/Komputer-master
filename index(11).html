@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Компьютерный мастер в Новороссийске. Выезд и удалённо</title>
+<meta name="description" content="Ремонтирую и настраиваю любую компьютерную технику. Работаю на выезде и удалённо. Делаю, как для себя. Компьютерный мастер в Новороссийске.">
+<meta name="theme-color" content="#030B06">
+<script>try{if(localStorage.getItem("km-theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<link rel="canonical" href="https://komputernyi-master.ru/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Компьютерный мастер в Новороссийске. Выезд и удалённо">
+<meta property="og:description" content="Ремонтирую и настраиваю любую компьютерную технику. Работаю на выезде и удалённо.">
+<meta property="og:url" content="https://komputernyi-master.ru/">
+<meta property="og:image" content="https://komputernyi-master.ru/wp-content/uploads/2019/11/soc-logo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Onest:wght@400;500;600;700&family=Oswald:wght@600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Onest:wght@400;500;600;700&family=Oswald:wght@600&display=swap"></noscript>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Компьютерный мастер","description":"Ремонт и настройка компьютерной техники на выезде и удалённо","url":"https://komputernyi-master.ru/","telephone":"+7-902-408-90-22","address":{"@type":"PostalAddress","addressLocality":"Новороссийск","addressCountry":"RU"},"openingHours":"Mo-Su 09:00-23:00","priceRange":"от 100 ₽"}
+</script>
+
+<style>
+@property --lid { syntax: '<angle>'; inherits: true; initial-value: -90deg; }
+
+:root{
+  /* Палитра оригинального сайта: «матрица» */
+  --bg:#030B06; --bg2:#07160D;
+  --g:#3DDC6E; --g-hi:#A6FFC4; --g-deep:#0E4A25;
+  --text:#EAF5EE; --muted:#93AB9C;
+  --stroke:rgba(255,255,255,.12);
+  --font:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --display:'Oswald','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --hand:'Caveat','Segoe Print','Bradley Hand',cursive;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --spring:cubic-bezier(.34,1.8,.5,1);
+}
+/* Настоящая пружина (затухающие колебания) для браузеров, которые умеют linear() */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root{ --spring:linear(0, .0513, .1869, .377, .5923, .8067, .9991, 1.1546, 1.2649, 1.3277, 1.346, 1.3265, 1.2784, 1.2119, 1.1371, 1.0632, .9972, .9441, .9068, .8859, .8803, .8877, .9047, .928, .9539, .9794, 1.0021, 1.0202, 1.0328, 1.0397, 1.0414, 1.0386, 1.0326, 1.0245, 1.0155, 1.0067, .9989, .9927, .9885, .9862, .9857, .9867, .9889, .9917, .9948, .9978, 1.0005, 1.0026, 1); }
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font:400 17px/1.6 var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+::selection{background:var(--g);color:var(--bg)}
+:focus-visible{outline:2px solid var(--g);outline-offset:4px;border-radius:10px}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Матрица на фоне ---------- */
+#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;transition:opacity .2s linear}
+.veil{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 45%,transparent 35%,rgba(3,11,6,.78) 100%),
+    linear-gradient(180deg,rgba(3,11,6,.55) 0%,rgba(3,11,6,0) 18%,rgba(3,11,6,0) 70%,rgba(3,11,6,.7) 100%)}
+
+/* ---------- Стекло ---------- */
+.glass{position:relative;isolation:isolate;border-radius:28px;
+  background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,.03) 42%,rgba(61,220,110,.05));
+  -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(255,255,255,.04),0 30px 70px -30px rgba(0,0,0,.85)}
+.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:radial-gradient(280px circle at var(--mx,30%) var(--my,0%),rgba(166,255,196,.7),rgba(255,255,255,.14) 42%,rgba(255,255,255,.05) 75%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.glass::after{content:'';position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;opacity:0;transition:opacity .45s;
+  background:radial-gradient(460px circle at var(--mx,50%) var(--my,0%),rgba(166,255,196,.12),transparent 50%)}
+.glass:hover::after{opacity:1}
+
+/* ---------- Пружинный hover и появление с блюром ---------- */
+.bounce{transition:scale .9s var(--spring),background .2s,color .2s,box-shadow .2s}
+.bounce:hover{scale:1.08}
+.bounce:active{scale:.96;transition-duration:.15s}
+.reveal{opacity:0;filter:blur(16px);translate:0 36px;
+  transition:opacity 1s var(--ease) var(--d,0ms),filter 1.1s var(--ease) var(--d,0ms),translate 1.2s var(--ease) var(--d,0ms),scale .9s var(--spring)}
+.reveal.shown{opacity:1;filter:none;translate:0 0}
+
+/* ---------- Шапка ---------- */
+.top{position:fixed;top:12px;left:0;right:0;z-index:40;pointer-events:none}
+.top .bar{pointer-events:auto;display:flex;align-items:center;gap:24px;height:62px;padding:0 10px 0 18px;border-radius:20px;transition:background .3s}
+.top.scrolled .bar{background:rgba(3,11,6,.55)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;letter-spacing:-.015em;font-size:16px;white-space:nowrap}
+.logo-mark{width:34px;height:34px;flex:none;filter:drop-shadow(0 0 12px rgba(61,220,110,.45));transition:scale .9s var(--spring)}
+.logo:hover .logo-mark{scale:1.12}
+.lm-cur{animation:blink 1.1s steps(1) infinite}
+.lm-lid{transform-origin:16px 20.5px;transition:transform .9s var(--spring)}
+.logo:hover .lm-lid{transform:scaleY(.86)}
+@keyframes blink{50%{opacity:0}}
+.nav{display:flex;gap:2px}
+.nav a{text-decoration:none;font-size:15px;font-weight:500;padding:8px 13px;border-radius:999px;color:var(--muted);transition:color .2s,background .2s}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,.07)}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.phone{display:inline-block;font-weight:600;text-decoration:none;font-size:16px;white-space:nowrap;padding:6px 4px}
+
+/* ---------- Кнопки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;white-space:nowrap}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-sm{height:44px;padding:0 20px;font-size:15px}
+.btn-primary{background:var(--g);color:#032010;box-shadow:0 10px 30px -10px rgba(61,220,110,.65)}
+.btn-primary:hover{background:#5BEB88;box-shadow:0 14px 40px -10px rgba(61,220,110,.9)}
+.btn-glass{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 1px 0 rgba(255,255,255,.25);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.btn-glass:hover{background:rgba(255,255,255,.13)}
+
+/* ---------- Первый экран ---------- */
+.hero{position:relative;z-index:2;height:100vh;height:100svh;min-height:680px;overflow-x:clip;overflow-y:visible}
+.giant{position:absolute;left:0;right:0;top:47%;transform:translateY(-50%);text-align:center;pointer-events:none;z-index:1;
+  font:600 clamp(60px,13.4vw,250px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.005em;color:var(--text);
+  text-shadow:0 0 60px rgba(61,220,110,.22);transition:translate 1.2s var(--ease)}
+.giant .ln{display:block;white-space:nowrap}
+.giant .c{display:inline-block;position:relative}
+.giant.typing .c{visibility:hidden}
+.giant.typing .c.on{visibility:visible;animation:keyin .26s var(--ease) both}
+@keyframes keyin{0%{opacity:0;transform:translateY(-.07em) scale(1.14);filter:blur(5px);color:var(--g-hi)}100%{opacity:1;transform:none;filter:blur(0)}}
+.giant .c.cur::after{content:'';position:absolute;left:100%;top:.06em;bottom:.04em;width:.075em;margin-left:.05em;background:var(--g);box-shadow:0 0 24px var(--g)}
+.giant.typed .c.cur::after{animation:blink 1s steps(1) infinite}
+
+.stage{position:absolute;left:50%;top:50%;width:min(860px,100vw);height:min(80svh,740px);transform:translate(-50%,-44%);z-index:2;
+  perspective:1800px;perspective-origin:50% 28%;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.stage.dragging{cursor:grabbing}
+
+.hero-bottom{position:absolute;left:0;right:0;bottom:clamp(20px,4vh,40px);z-index:3}
+.hero-bottom .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.hb-left{max-width:540px}
+.lead{font-size:18px;line-height:1.5;color:#C9DBCF}
+.ls>span{display:block}
+.ls>span+span{margin-top:.45em}
+.lead.ls>span+span{margin-top:.15em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.hb-right{display:flex;flex-direction:column;align-items:flex-end;gap:14px;text-align:right}
+.place{font:600 clamp(20px,1.8vw,26px)/1.15 var(--font);letter-spacing:-.02em}
+.place span{display:block;color:var(--muted);font-weight:500;font-size:.72em;letter-spacing:0;margin-top:4px}
+.status{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--g);box-shadow:0 0 0 4px rgba(61,220,110,.18),0 0 12px var(--g)}
+.status.off i{background:#6E8576;box-shadow:0 0 0 4px rgba(110,133,118,.2)}
+.stage-ctrl{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.hint{display:flex;align-items:center;gap:7px;white-space:nowrap;transition:opacity .4s}
+.hint svg{width:20px;height:20px}
+.hint{opacity:0}
+.hero.landed .hint{opacity:1}
+.hero.landed.touched .hint{opacity:0}
+
+/* ---------- 3D-ноутбук (чистый CSS) ---------- */
+.laptop{position:absolute;left:50%;top:63%;width:0;height:0;transform-style:preserve-3d;will-change:transform;--gx:0%}
+.lid{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;transform:translate3d(0,-13.5px,-147px) rotateX(var(--lid));--lid:-90deg;transition:--lid 1.3s cubic-bezier(.25,.9,.25,1)}
+.laptop.open .lid{--lid:13deg}
+.f{position:absolute;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+
+.b-top{left:-220px;top:-150px;width:440px;height:300px;transform:rotateX(90deg) translateZ(7px);background:linear-gradient(180deg,#26302A,#1A221D);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(166,255,196,.08)}
+.b-bot{left:-220px;top:-150px;width:440px;height:300px;transform:rotateX(-90deg) translateZ(7px);background:#0B100D;border-radius:6px}
+.b-front{left:-220px;top:-7px;width:440px;height:14px;transform:translateZ(150px);background:linear-gradient(#2E3932,#121814)}
+.b-front::after{content:'';position:absolute;left:50%;top:0;width:70px;height:4px;margin-left:-35px;border-radius:0 0 6px 6px;background:#0E1410}
+.b-front::before{content:'';position:absolute;right:26px;top:5px;width:6px;height:3px;border-radius:2px;background:var(--g);box-shadow:0 0 8px var(--g)}
+.b-back{left:-220px;top:-7px;width:440px;height:14px;transform:rotateY(180deg) translateZ(150px);background:#111813}
+.b-right,.b-left{left:-150px;top:-7px;width:300px;height:14px;background:linear-gradient(#27312B,#101612)}
+.b-right{transform:rotateY(90deg) translateZ(220px)}
+.b-left{transform:rotateY(-90deg) translateZ(220px)}
+.b-right::after,.b-left::after{content:'';position:absolute;top:5px;left:60px;width:22px;height:4px;border-radius:2px;background:#050806;box-shadow:32px 0 0 #050806}
+.kb{position:absolute;left:32px;right:32px;top:26px;height:132px;padding:7px;border-radius:7px;background:#0A0F0C;box-shadow:inset 0 1px 3px rgba(0,0,0,.6),0 0 0 1px rgba(166,255,196,.06);display:grid;grid-template-columns:repeat(28,1fr);grid-template-rows:repeat(5,1fr);gap:4px}
+.kb i{grid-column:span 2;background:#18201B;border-radius:3px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.5),inset 0 1px 0 rgba(166,255,196,.1),0 0 6px rgba(61,220,110,.12);transition:background .35s,box-shadow .35s}
+.kb i.hit{background:var(--g);box-shadow:0 0 10px var(--g),0 0 26px rgba(61,220,110,.65);transition:none}
+.pad{position:absolute;left:50%;top:176px;width:150px;height:98px;margin-left:-75px;border-radius:9px;background:#202A23;box-shadow:inset 0 0 0 1px rgba(166,255,196,.1)}
+
+.l-screen{left:-220px;top:-296px;width:440px;height:300px;transform:translateZ(6px);background:#0A0E0B;border-radius:12px 12px 3px 3px;box-shadow:inset 0 0 0 1px rgba(166,255,196,.08)}
+.l-back{left:-220px;top:-296px;width:440px;height:300px;transform:rotateY(180deg);background:linear-gradient(155deg,#2A352E,#121915);border-radius:12px 12px 3px 3px}
+.lid-logo{position:absolute;left:50%;top:45%;width:62px;height:62px;margin:-31px 0 0 -31px;filter:drop-shadow(0 0 16px rgba(61,220,110,.65))}
+.l-top{left:-220px;top:-299px;width:440px;height:6px;transform:translateZ(3px) rotateX(90deg);background:#2B362F;border-radius:3px}
+.l-right,.l-left{top:-296px;width:6px;height:300px;background:#1C251F}
+.l-bot{left:-220px;top:1px;width:440px;height:6px;transform:translateZ(3px) rotateX(-90deg);background:#151C17}
+.hinge{left:-190px;top:-13px;width:380px;height:6px;transform:translateZ(-140.5px);background:linear-gradient(#1A221D,#0B100D);border-radius:3px}
+.l-right{left:217px;transform:translateZ(3px) rotateY(90deg)}
+.l-left{left:-223px;transform:translateZ(3px) rotateY(-90deg)}
+.shadow{left:-300px;top:-210px;width:600px;height:420px;transform:rotateX(90deg) translateZ(-10px);background:radial-gradient(closest-side,rgba(61,220,110,.22),rgba(0,0,0,.45) 45%,transparent)}
+
+.display{position:absolute;inset:13px 13px 22px;border-radius:4px;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,#06200F 0%,#020805 70%)}
+.display::after{content:'';position:absolute;inset:-30%;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.045) 50%,transparent 75%);transform:translateX(var(--gx));pointer-events:none}
+.cam{position:absolute;left:50%;top:5px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#1E2A22}
+.term{position:absolute;inset:16px 18px;font:500 12.5px/1.6 var(--mono);color:var(--g);text-shadow:0 0 8px rgba(61,220,110,.55)}
+.term .p{color:var(--g-hi)}
+.term .tc{display:inline-block;width:7px;height:13px;margin-left:1px;vertical-align:-2px;background:var(--g);animation:blink 1s steps(1) infinite}
+.term ul{margin-top:8px}
+.term li{opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s;transition-delay:calc(var(--i) * .38s)}
+.boot .term li{opacity:1;transform:none}
+.term li b{color:var(--g-hi);font-weight:700}
+.term .bar{display:block;margin-top:10px;height:4px;border-radius:2px;background:rgba(61,220,110,.15);overflow:hidden}
+.term .bar i{display:block;height:100%;width:0;background:var(--g);box-shadow:0 0 10px var(--g);transition:width 2.2s cubic-bezier(.4,0,.2,1) .2s}
+.boot .term .bar i{width:100%}
+
+/* ---------- Секции ---------- */
+.sec{position:relative;padding:clamp(80px,10vw,140px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+h2{font:600 clamp(40px,5.6vw,80px)/.95 var(--display);text-transform:uppercase;letter-spacing:-.005em;max-width:14em}
+.sec-head p{max-width:34em;color:var(--muted)}
+
+/* ---------- Услуги ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{display:flex;flex-direction:column;min-height:280px;padding:30px}
+.card:hover{scale:1.035}
+.ic{width:52px;height:52px;flex:none;color:var(--g);filter:drop-shadow(0 0 10px rgba(61,220,110,.45))}
+.ic path,.ic rect,.ic circle{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .ic [pathLength]{stroke-dasharray:100;animation:draw .9s ease both}
+@keyframes draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.card h3{font-size:clamp(21px,1.8vw,24px);line-height:1.2;letter-spacing:-.02em;font-weight:650;margin:auto 0 10px;padding-top:40px}
+.card p{color:var(--muted);font-size:16px;line-height:1.55;max-width:34em}
+.card-xl{grid-column:span 2;background:linear-gradient(155deg,rgba(61,220,110,.16),rgba(255,255,255,.03) 50%,rgba(61,220,110,.06))}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chips span{padding:6px 13px;border-radius:999px;font-size:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);color:#CFE2D5}
+.card-sig{background:linear-gradient(155deg,rgba(61,220,110,.34),rgba(61,220,110,.12) 60%,rgba(255,255,255,.04))}
+.card-sig p{color:#D5EEDC}
+.card-sig .ic{color:var(--g-hi)}
+.card-sig a{margin-top:18px;font-weight:600;font-size:15px;text-underline-offset:4px;color:var(--g-hi)}
+.card-ask{grid-column:span 2;flex-direction:row;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;min-height:0}
+.card-ask h3{padding-top:0;margin:0 0 8px}
+
+/* ---------- Видео ---------- */
+.video-sec h2{margin:0 auto 60px;text-align:center}
+.vid-zone{position:relative}
+.vid{max-width:760px;margin:0 auto;padding:10px;border-radius:32px}
+.vid-in{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#000}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt{position:absolute;inset:0;width:100%;height:100%;display:block}
+.yt img{width:100%;height:100%;object-fit:cover;opacity:0;transition:scale 1s var(--ease),filter .6s,opacity .6s}
+.yt img.ok{opacity:1}
+.yt:hover img{scale:1.04;filter:brightness(.85)}
+.play{position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:var(--g);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(61,220,110,.2),0 0 50px rgba(61,220,110,.6);transition:scale .9s var(--spring)}
+.play::after{content:'';margin-left:7px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #032010}
+.yt:hover .play{scale:1.14}
+.vid-note{position:absolute;left:0;right:0;bottom:0;padding:10px 16px;font-size:13px;background:rgba(3,11,6,.8);color:var(--muted);text-align:center;display:none}
+.vid-note.on{display:block}
+.note{position:absolute;left:0;top:2%;width:210px;font:600 33px/1.02 var(--hand);color:var(--g-hi);transform:rotate(-6deg);text-shadow:0 0 18px rgba(61,220,110,.35)}
+.arrow{position:absolute;left:40px;top:calc(2% + 84px);width:200px;height:160px;overflow:visible;color:var(--g);filter:drop-shadow(0 0 6px rgba(61,220,110,.6))}
+.arrow path{fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.in .arrow .shaft{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s cubic-bezier(.6,0,.3,1) .3s}
+.in .arrow .head{stroke-dashoffset:0;transition:stroke-dashoffset .3s ease-out 1.35s}
+.arrow-m{display:none}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);margin-top:clamp(70px,9vw,120px);align-items:start}
+.about blockquote{font-size:clamp(26px,2.6vw,36px);line-height:1.2;letter-spacing:-.025em;font-weight:600}
+.about blockquote .gap{margin-top:1.1em;color:#BFD6C7}
+.about-text p+p{margin-top:14px}
+.about-text p{color:var(--muted);max-width:27em}
+.m-br{display:none}
+.clock-slot{display:block;height:0;transition:height .6s cubic-bezier(.22,1,.36,1)}
+.clock-slot.open{height:var(--slot,190px)}
+.hl-zone{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.hl{background:linear-gradient(transparent 58%,rgba(61,220,110,.32) 58%,rgba(61,220,110,.32) 92%,transparent 92%);color:var(--text);font-weight:600;padding:0 2px;border-radius:2px;transition:background .3s,color .3s}
+.hl-zone{transition:color .3s}
+.hl-zone:hover,.hl-zone:focus-visible{color:var(--g-hi)}
+.clock{position:absolute;left:0;top:0;width:176px;height:176px;z-index:20;pointer-events:none;perspective:700px;visibility:hidden;opacity:0}
+.clock.show{visibility:visible;animation:clockIn .8s cubic-bezier(.22,1,.36,1) both}
+.clock.hide{visibility:visible;animation:clockOut .6s cubic-bezier(.64,0,.78,0) both}
+@keyframes clockIn{from{opacity:0;translate:180px 0;scale:.92}to{opacity:1;translate:0 0;scale:1}}
+@keyframes clockOut{from{opacity:1;translate:0 0;scale:1}to{opacity:0;translate:180px 0;scale:.92}}
+.clock-tilt{width:100%;height:100%;transform:rotateX(18deg) rotateY(-26deg) rotateZ(-7deg);transform-style:preserve-3d}
+.clock-face{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#1B3A26 0%,#0A1A10 60%,#06110A 100%);box-shadow:inset 0 0 0 3px #2A3A30,inset 0 2px 0 4px rgba(166,255,196,.12),7px 9px 0 1px #0B140E,9px 12px 0 1px #050A07,0 0 50px rgba(61,220,110,.35),0 20px 40px rgba(0,0,0,.6)}
+.clock-face::before{content:"";position:absolute;inset:9px;border-radius:50%;background:repeating-conic-gradient(from -1.5deg,rgba(166,255,196,.85) 0 3deg,transparent 3deg 30deg);-webkit-mask:radial-gradient(closest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));mask:radial-gradient(closest-side,transparent calc(100% - 9px),#000 calc(100% - 8px))}
+.clock-face::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,rgba(255,255,255,.16),transparent 45%);pointer-events:none}
+.clock i{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:3px;animation:spin linear infinite;animation-play-state:paused}
+.clock.show i{animation-play-state:running}
+.clock .hh{width:5px;height:28%;margin-left:-2.5px;background:var(--text);animation-duration:16s}
+.clock .hh{animation-delay:-6s}
+.clock .mh{animation-delay:-.7s;width:3.5px;height:38%;margin-left:-1.75px;background:var(--text);animation-duration:2.4s}
+.clock .sh{width:1.5px;height:42%;margin-left:-.75px;background:var(--g);box-shadow:0 0 6px var(--g);animation-duration:1.2s}
+.clock b{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.facts>div{padding:18px 20px;border-radius:20px}
+.facts dt{font:600 34px/1.05 var(--display);color:var(--g-hi)}
+.facts dd{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* ---------- Отзывы ---------- */
+.rv-nav{display:flex;gap:10px}
+.rv-nav button{width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.rv-nav svg{width:20px;height:20px}
+.rv-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(20px,(100vw - 1240px)/2);padding:20px max(20px,(100vw - 1240px)/2) 40px;scrollbar-width:none}
+.rv-track::-webkit-scrollbar{display:none}
+.rv{flex:0 0 min(390px,84vw);scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:26px;padding:30px}
+.rv:hover{scale:1.035}
+.rv blockquote{font-size:17px;line-height:1.55}
+.rv blockquote::before{content:'“';display:block;font:600 56px/.6 var(--display);color:var(--g);margin-bottom:14px}
+.rv figcaption{font-weight:600;font-size:15px}
+.rv figcaption span{display:block;font-weight:400;color:var(--muted)}
+
+/* ---------- Контакты ---------- */
+.cta{padding:clamp(36px,6vw,84px);border-radius:36px;overflow:hidden}
+.cta::after{opacity:1}
+.cta h2{max-width:none}
+.cta .h2-sub{color:var(--g-hi)}
+.cta p{color:var(--muted);margin:20px 0 34px;max-width:34em}
+.cta-phone{display:inline-block;transform-origin:left center;font:600 clamp(42px,6.6vw,96px)/1 var(--display);letter-spacing:.01em;text-decoration:none;margin-bottom:34px;color:var(--g-hi);text-shadow:0 0 40px rgba(61,220,110,.35)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+.foot{padding:30px 0 50px;font-size:14px;color:var(--muted)}
+.foot .wrap{display:flex;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+.foot a{text-decoration:none;transition:color .2s}
+.foot a:hover{color:var(--g-hi)}
+
+
+/* =========================================================
+   СВЕТЛАЯ ТЕМА
+   ========================================================= */
+html[data-theme="light"]{
+  /* Фон и матрица остаются тёмными, текст на фоне чуть светлее, чем в тёмной теме */
+  --text:#F6FCF8; --muted:#B3CABB;
+}
+/* Светлое стекло: шапка, карточки, кнопки, контакты — внутри тёмный текст */
+html[data-theme="light"] .glass,html[data-theme="light"] .btn-glass{
+  --text:#0C2316; --muted:#3E5748; --g-hi:#0F7D38; color:var(--text)}
+/* Экран ноутбука и часы всегда «тёмные» */
+html[data-theme="light"] .display,html[data-theme="light"] .clock{--g:#3DDC6E;--g-hi:#A6FFC4;--text:#EAF5EE}
+html[data-theme="light"] .glass{
+  background:linear-gradient(140deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 38%),linear-gradient(155deg,rgba(250,253,251,.86),rgba(240,249,243,.76) 50%,rgba(222,246,231,.8));-webkit-backdrop-filter:blur(30px) saturate(200%) brightness(1.4);backdrop-filter:blur(30px) saturate(200%) brightness(1.4);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.35),inset 0 -18px 40px -24px rgba(255,255,255,.55),0 30px 70px -30px rgba(0,0,0,.85)}
+html[data-theme="light"] .glass::before{background:radial-gradient(300px circle at var(--mx,30%) var(--my,0%),rgba(47,203,98,.9),rgba(255,255,255,.75) 40%,rgba(255,255,255,.45) 75%)}
+html[data-theme="light"] .glass::after{background:radial-gradient(460px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.35),transparent 55%)}
+html[data-theme="light"] .top .bar,html[data-theme="light"] .top.scrolled .bar{background:linear-gradient(140deg,rgba(255,255,255,.5),rgba(255,255,255,0) 40%),linear-gradient(155deg,rgba(250,253,251,.84),rgba(238,248,242,.78))}
+html[data-theme="light"] .nav a:hover{background:rgba(12,35,22,.07)}
+html[data-theme="light"] .btn-glass{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(240,249,243,.78));-webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(255,255,255,.6),0 8px 24px -14px rgba(0,0,0,.6)}
+html[data-theme="light"] .btn-glass:hover{background:#fff}
+html[data-theme="light"] .lead{color:#D8E8DD}
+html[data-theme="light"] .about blockquote .gap{color:#CFE3D6}
+html[data-theme="light"] .glass .ic{color:#18A44E;filter:none}
+html[data-theme="light"] .card-xl{background:linear-gradient(140deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 38%),linear-gradient(155deg,rgba(208,247,222,.86),rgba(246,252,248,.76) 50%,rgba(222,248,231,.8))}
+html[data-theme="light"] .card-sig{background:linear-gradient(140deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 38%),linear-gradient(155deg,rgba(132,232,168,.88),rgba(180,243,203,.8) 60%,rgba(232,251,239,.78))}
+html[data-theme="light"] .card-sig p{color:#1B3A26}
+html[data-theme="light"] .card-sig .ic,html[data-theme="light"] .card-sig a{color:#0B5F2A}
+html[data-theme="light"] .chips span{background:rgba(255,255,255,.6);box-shadow:inset 0 0 0 1px rgba(12,35,22,.1),inset 0 1px 0 #fff;color:#24402F}
+html[data-theme="light"] .cta-phone{text-shadow:none}
+html[data-theme="light"] .vid-note{background:rgba(244,250,246,.92)}
+
+/* Переключатель темы */
+.theme-btn{position:relative;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;overflow:hidden}
+.theme-btn svg{position:absolute;width:20px;height:20px;transition:translate .6s var(--ease),rotate .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{translate:0 140%;rotate:-90deg;opacity:0}
+html[data-theme="light"] .theme-btn .i-sun{translate:0 0;rotate:0deg;opacity:1}
+html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opacity:0}
+/* Круговая смена темы от кнопки */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-new(root){animation:themeReveal .75s cubic-bezier(.65,0,.35,1)}
+@keyframes themeReveal{from{clip-path:circle(0 at var(--tx,90%) var(--ty,5%))}to{clip-path:circle(var(--tr,150vmax) at var(--tx,90%) var(--ty,5%))}}
+
+/* ---------- Адаптив ---------- */
+@media (max-width:440px){ .logo-t{display:none} }
+@media (max-width:1200px){
+  .note{position:static;width:auto;text-align:center;transform:rotate(-2deg);margin:-30px auto 4px;font-size:30px}
+  .arrow{display:none}
+  .arrow-m{display:block;position:static;margin:0 auto 12px;width:60px;height:70px}
+}
+@media (max-width:960px){
+  .nav{display:none}
+  .grid{grid-template-columns:1fr 1fr}
+  .card-ask{grid-column:auto;flex-direction:column;align-items:flex-start}
+  .about{grid-template-columns:1fr}
+  .hero{height:auto;min-height:100svh;display:flex;flex-direction:column;padding-top:110px}
+  .giant{position:relative;top:auto;transform:none}
+  .stage{position:relative;left:auto;top:auto;transform:none;width:100%;height:min(88vw,560px);margin:-2vw auto 0}
+  .hero-bottom{position:relative;bottom:auto;padding-bottom:36px}
+  .hero-bottom .wrap{flex-direction:column;align-items:stretch;gap:26px}
+  .hb-left{max-width:none}
+  .hb-right{align-items:flex-start;text-align:left}
+}
+@media (max-width:640px){
+  .theme-btn{width:40px;height:40px}
+  .m-br{display:inline}
+  .clock{width:130px;height:130px}
+  body{font-size:16px}
+  .top{top:8px}
+  .top .phone{display:none}
+  .top .bar{padding:0 8px 0 12px;gap:10px}
+  .logo{font-size:15px}
+  .top .btn-sm{padding:0 14px;font-size:14px;height:40px}
+  .hero{padding-top:96px}
+  .hero-actions .btn{flex:1 1 100%}
+  .grid{grid-template-columns:1fr}
+  .card-xl{grid-column:auto}
+  .card{min-height:0;padding:26px}
+  .facts{grid-template-columns:1fr}
+  .play{width:70px;height:70px;margin:-35px 0 0 -35px}
+  .play::after{border-width:12px 0 12px 20px;margin-left:5px}
+  .glass{-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%)}
+}
+@media (hover:none){ .card:hover,.rv:hover{scale:1} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;filter:none;translate:0 0}
+}
+</style>
+</head>
+<body>
+<canvas id="matrix" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar glass">
+      <a class="logo" href="#top"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#3DDC6E"/><g class="lm-lid"><rect x="7.5" y="7.5" width="17" height="12.5" rx="2.2" fill="none" stroke="#032010" stroke-width="2"/><path d="M11 11.6l2.5 2.2-2.5 2.2" fill="none" stroke="#032010" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect class="lm-cur" x="15" y="15.2" width="4.6" height="1.8" rx=".9" fill="#032010"/></g><path d="M4.5 22.4h23l-1.7 2.6H6.2z" fill="#032010"/></svg><span class="logo-t">Компьютерный мастер</span></a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#services">Услуги</a>
+        <a href="#video">О мастере</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="https://komputernyi-master.ru/stati/">Статьи</a>
+      </nav>
+      <div class="top-right">
+        <button class="theme-btn btn-glass bounce" id="themeBtn" type="button" aria-label="Включить светлую тему"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+        <a class="phone bounce" href="tel:+79024089022">+7 902 408-90-22</a>
+        <a class="btn btn-primary btn-sm bounce" href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <h1 class="sr">Компьютерный мастер в Новороссийске</h1>
+  <div class="giant" id="giant" aria-hidden="true"><span class="ln">Компьютерный</span><span class="ln">мастер</span></div>
+
+  <div class="stage" id="stage" tabindex="0" role="img" aria-label="Трёхмерный ноутбук. Потяните, чтобы повернуть. Нажмите, чтобы открыть или закрыть крышку. Стрелки на клавиатуре тоже поворачивают его.">
+    <div class="laptop" id="laptop">
+      <div class="f shadow"></div>
+      <div class="f b-bot"></div>
+      <div class="f b-back"></div>
+      <div class="f b-left"></div>
+      <div class="f b-right"></div>
+      <div class="f b-front"></div>
+      <div class="f hinge"></div>
+      <div class="f b-top"><div class="kb" id="kb"></div><div class="pad"></div></div>
+      <div class="lid">
+        <div class="f l-back"><svg class="lid-logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#3DDC6E"/><g class="lm-lid"><rect x="7.5" y="7.5" width="17" height="12.5" rx="2.2" fill="none" stroke="#032010" stroke-width="2"/><path d="M11 11.6l2.5 2.2-2.5 2.2" fill="none" stroke="#032010" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="15" y="15.2" width="4.6" height="1.8" rx=".9" fill="#032010"/></g><path d="M4.5 22.4h23l-1.7 2.6H6.2z" fill="#032010"/></svg></div>
+        <div class="f l-bot"></div>
+        <div class="f l-left"></div>
+        <div class="f l-right"></div>
+        <div class="f l-top"></div>
+        <div class="f l-screen">
+          <span class="cam"></span>
+          <div class="display">
+            <div class="term">
+              <div><span class="p">master@novorossiysk:~$</span> <span id="echo"></span><span class="tc"></span></div>
+              <ul>
+                <li style="--i:0">&gt; подключение . . . <b>OK</b></li>
+                <li style="--i:1">&gt; диск проверен . . . <b>OK</b></li>
+                <li style="--i:2">&gt; вирусы удалены . . . <b>OK</b></li>
+                <li style="--i:3">&gt; windows обновлена . . . <b>OK</b></li>
+                <li style="--i:4">&gt; <b>готово, компьютер летает</b></li>
+              </ul>
+              <span class="bar"><i></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="wrap">
+      <div class="hb-left reveal" style="--d:900ms">
+        <p class="lead ls"><span>Ремонтирую и настраиваю любую компьютерную технику.</span><span>Работаю на выезде и удалённо.</span><span>Делаю, как для себя.</span></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary bounce" href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.2.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+            Задать вопрос в WhatsApp
+          </a>
+          <a class="btn btn-glass bounce" href="tel:+79024089022">Позвонить</a>
+        </div>
+      </div>
+      <div class="hb-right reveal" style="--d:1050ms">
+        <p class="place">в Новороссийске<span>на выезде и удалённо по всему миру</span></p>
+        <p class="status" id="status"><i aria-hidden="true"></i><span>Без выходных, с 9:00 до 23:00</span></p>
+        <div class="stage-ctrl">
+          <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>Крутите ноутбук мышью, клик открывает крышку</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">Что я делаю</h2>
+      <p class="reveal ls" style="--d:120ms"><span>Почти любую работу можно сделать удалённо, поэтому ко мне обращаются из разных городов и даже стран.</span><span>Если нужен мастер на месте, приеду сам в районе Новороссийска или посоветую надёжного специалиста в вашем городе.</span></p>
+    </div>
+    <div class="grid" data-stagger>
+      <article class="card card-xl glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="9" y="12" width="34" height="22" rx="3" pathLength="100"/><path d="M4 40h44l-3 4H7z" pathLength="100"/><path d="M22 20l-4 4 4 4M30 20l4 4-4 4" pathLength="100"/></svg>
+        <h3>Ремонт и настройка компьютерной техники</h3>
+        <p>Ремонт ноутбуков любой сложности, стационарных компьютеров, моноблоков и планшетов. Быстро приезжаю на адрес.</p>
+        <div class="chips"><span>Ноутбуки</span><span>Компьютеры</span><span>Моноблоки</span><span>Планшеты</span><span>Установка Windows</span></div>
+      </article>
+      <article class="card card-sig glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="9" width="40" height="27" rx="3" pathLength="100"/><path d="M18 44h16M26 36v8" pathLength="100"/><path d="M22 17l10 6-4.5 1.2L30 29l-2 1-2.6-4.6L22 28z" pathLength="100"/></svg>
+        <h3>Удалённая помощь и консультации</h3>
+        <p>Техподдержка без выезда: установка программ, удаление вирусов, настройка системы. Нужен только интернет.</p>
+        <a href="https://komputernyi-master.ru/udalennaya-pomosh/">Как это работает</a>
+      </article>
+      <article class="card glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 20a26 26 0 0 1 36 0" pathLength="100"/><path d="M14 27a17 17 0 0 1 24 0" pathLength="100"/><path d="M20 34a8 8 0 0 1 12 0" pathLength="100"/><circle cx="26" cy="41" r="2" pathLength="100"/></svg>
+        <h3>Настройка сетевого оборудования</h3>
+        <p>Подключение интернета, настройка роутеров, модемов, репитеров. Увеличу радиус действия Wi-Fi.</p>
+      </article>
+      <article class="card glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="10" y="8" width="32" height="36" rx="4" pathLength="100"/><circle cx="26" cy="23" r="8" pathLength="100"/><path d="M26 23l5-4M15 38h4" pathLength="100"/></svg>
+        <h3>Восстановление утерянных данных</h3>
+        <p>Верну случайно удалённые файлы и данные с повреждённых жёстких дисков, флешек и телефонов.</p>
+      </article>
+      <article class="card glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="10" width="40" height="32" rx="3" pathLength="100"/><path d="M6 18h40M11 14h1M15 14h1" pathLength="100"/><path d="M13 26h14M13 32h10M33 25h7v10h-7z" pathLength="100"/></svg>
+        <h3>Создание и продвижение сайтов</h3>
+        <p>От лендинга до интернет-магазина, с продвижением в поиске и соцсетях: SEO, SMO, SMM.</p>
+      </article>
+      <article class="card glass reveal">
+        <svg class="ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 40l11-12 8 7 15-17" pathLength="100"/><path d="M34 18h8v8" pathLength="100"/><path d="M8 46h36" pathLength="100"/></svg>
+        <h3>Продвижение бренда и товаров</h3>
+        <p>Больше продаж и доверия к бренду через социальные сети и поисковые системы.</p>
+      </article>
+      <article class="card card-ask glass reveal">
+        <div>
+          <h3>Не нашли свою проблему?</h3>
+          <p>Опишите, что случилось. Подскажу, как решить, даже если этого нет в списке.</p>
+        </div>
+        <a class="btn btn-primary bounce" href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">Описать проблему</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec video-sec" id="video">
+  <div class="wrap">
+    <h2 class="reveal">Привет! Меня зовут Сергей</h2>
+    <div class="vid-zone" id="vidZone">
+      <p class="note reveal" style="--d:200ms">Минута о том, как я работаю</p>
+      <svg class="arrow" viewBox="0 0 200 160" aria-hidden="true">
+        <path class="shaft" pathLength="1" d="M24 4C6 48 20 106 82 124c34 10 70 6 108-8"/>
+        <path class="head" pathLength="1" d="M164.3 112.5L190 116l-17.3 19.4"/>
+      </svg>
+      <svg class="arrow arrow-m" viewBox="0 0 60 70" aria-hidden="true">
+        <path class="shaft" pathLength="1" d="M20 4c-10 18-8 40 12 60"/>
+        <path class="head" pathLength="1" d="M27.9 48.5L32 64l-15.5-4.1"/>
+      </svg>
+      <div class="vid glass reveal" style="--d:100ms">
+        <div class="vid-in">
+          <button class="yt" type="button" data-id="J3VURZjh0a8" aria-label="Смотреть видео: Сергей рассказывает о своей работе">
+            <img src="https://i.ytimg.com/vi/J3VURZjh0a8/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+          <p class="vid-note" id="vidNote">Видео открылось в новой вкладке. Чтобы оно играло прямо на сайте, запустите сайт через localhost (см. README).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about">
+      <blockquote class="reveal ls"><span>У меня обслуживаются уже дети и внуки моих первых клиентов.</span><span class="gap">Можно сказать, мои контакты передаются по наследству.</span></blockquote>
+      <div class="about-text reveal" style="--d:150ms">
+        <p class="ls"><span>В области программного обеспечения я работаю около двадцати лет.</span><span>Установка Windows, настройка любых программ, восстановление утерянных данных, поиск и удаление вирусов: <mark class="hl">всё это я могу сделать удалённо,</mark><br><span class="hl-zone" id="hlZone" tabindex="0">а значит, вам не придётся ждать<br>и подстраивать график <br class="m-br">под рабочий день мастера.</span><span class="clock-slot" aria-hidden="true"></span></span></p>
+        <p class="ls"><span>Со мной всегда можно договориться и решить проблему в удобное для вас время.</span><span>Мои клиенты, как правило, становятся моими друзьями.</span></p>
+        <dl class="facts" data-stagger>
+          <div class="glass reveal"><dt>20 лет</dt><dd>в IT</dd></div>
+          <div class="glass reveal"><dt>1000+</dt><dd>довольных клиентов</dd></div>
+          <div class="glass reveal"><dt>от 100 ₽</dt><dd>стоимость работ</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">Что говорят клиенты</h2>
+      <div class="rv-nav reveal" style="--d:120ms">
+        <button class="btn-glass bounce" type="button" data-dir="-1" aria-label="Предыдущие отзывы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="btn-glass bounce" type="button" data-dir="1" aria-label="Следующие отзывы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="rv-track" id="rvTrack" data-stagger>
+    <figure class="rv glass reveal"><blockquote>Спасибо огромное! Сергей без преувеличения спас мой комп и меня саму с моими срочными заказами по работе. Комп после реанимации просто летает! Мне вас рекомендовали хорошие знакомые, и не зря.</blockquote><figcaption>Ольга<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Сергей у нас как семейный доктор, только по компьютерной технике.</blockquote><figcaption>Елена<span>Германия</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Обращаемся уже на протяжении 7 лет. Выполняет работу чётко и грамотно, даже удалённо: помог из Новороссийска с ноутбуком, который находился в Ростове.</blockquote><figcaption>Татьяна<span>Ростов-на-Дону</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Качественный ремонт, установка нужных программ, ничего лишнего. Сергей внимательный и ответственный специалист, всё кратко и понятно объясняет, без лишних терминов, всегда на связи.</blockquote><figcaption>Екатерина<span>Анапа</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Не первый раз пользуюсь услугами Сергея и очень рад: всегда быстро приезжает, хорошие цены. Рекомендую.</blockquote><figcaption>Константин Т.<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Переустанавливал Windows после моих долгих и мучительных попыток сделать это самой после вирусной атаки. Поставил качественно и оперативно. Рекомендую как специалиста, знающего своё дело!</blockquote><figcaption>Марина Калинина<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Обращалась к Сергею не раз. Очень хороший и честный мастер! Даже в выходной или после рабочего дня старался приехать или подключиться удалённо и решить проблему.</blockquote><figcaption>Елизавета<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Прекрасный специалист, просто талант. Я его постоянная клиентка: профессионал своего дела, с ним всегда можно договориться.</blockquote><figcaption>Ирина Т.<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Отличный специалист за демократичные цены, в помощь студентам и не только. Выполнил работу на все сто.</blockquote><figcaption>Лариса<span>Новороссийск</span></figcaption></figure>
+    <figure class="rv glass reveal"><blockquote>Всем довольны! Мастер супер! Всё быстро и комфортно!</blockquote><figcaption>Инна<span>Новороссийск</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="sec" id="contact" style="padding-top:20px">
+  <div class="wrap">
+    <div class="cta glass reveal">
+      <h2>Свяжитесь со мной<br><span class="h2-sub">любым удобным способом</span></h2>
+      <p class="ls"><span>Без выходных, с 9:00 до 23:00.</span><span>Напишите в WhatsApp или позвоните, разберёмся вместе.</span></p>
+      <a class="cta-phone" href="tel:+79024089022">+7 902 408-90-22</a>
+      <div class="cta-row">
+        <a class="btn btn-primary bounce" href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">Написать в WhatsApp</a>
+        <a class="btn btn-glass bounce" href="tel:+79024089022">Позвонить</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="clock" id="clock" aria-hidden="true"><div class="clock-tilt"><div class="clock-face"><i class="hh"></i><i class="mh"></i><i class="sh"></i><b></b></div></div></div>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Компьютерный мастер, Новороссийск</span>
+    <nav aria-label="Документы">
+      <a href="https://komputernyi-master.ru/udalennaya-pomosh/">Удалённая помощь</a>
+      <a href="https://komputernyi-master.ru/politika-konfidentsialnosti/">Политика конфиденциальности</a>
+      <a href="https://komputernyi-master.ru/polzovatelskoe-soglashenie/">Пользовательское соглашение</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  $('#year').textContent = new Date().getFullYear();
+
+  /* Статус «на связи» по московскому времени */
+  try {
+    const h = +new Intl.DateTimeFormat('ru-RU', { hour: 'numeric', hour12: false, timeZone: 'Europe/Moscow' }).format(new Date());
+    const open = h >= 9 && h < 23;
+    const st = $('#status');
+    st.classList.toggle('off', !open);
+    st.querySelector('span').textContent = open ? 'Сейчас на связи, до 23:00' : 'Сейчас не на связи, отвечу с 9:00';
+  } catch (e) {}
+
+  /* =========================================================
+     МАТРИЦА: падающие 0 и 1 с глубиной резкости, как в футаже
+     ========================================================= */
+  const cv = $('#matrix');
+  const ctx = cv.getContext('2d', { alpha: false });
+  const LAYERS = [
+    { size: 11, blur: 2,  alpha: .32, speed: [35, 70],   density: 1 / 15,  gap: 13, len: [8, 22] }, // дальний, мягкий
+    { size: 15, blur: 0,  alpha: .85, speed: [60, 125],  density: 1 / 38,  gap: 18, len: [6, 18] }, // резкий план
+    { size: 34, blur: 9,  alpha: .55, speed: [120, 210], density: 1 / 130, gap: 40, len: [3, 7] }   // ближний, боке
+  ];
+  let W = 0, H = 0, dpr = 1, streams = [], sprites = [], mRaf = 0, mLast = 0;
+  const PAL = {
+    dark:  { bg: '#030B06', body: '#3DDC6E', head: '#DFFFEA', k: 1 },
+    light: { bg: '#030B06', body: '#3DDC6E', head: '#DFFFEA', k: 1 }
+  };
+  const pal = () => PAL[document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'];
+  function buildSprites() {
+    const P = pal();
+    sprites = LAYERS.map(L => ({
+      b: { 0: makeSprite('0', L, P.body), 1: makeSprite('1', L, P.body) },
+      h: { 0: makeSprite('0', L, P.head), 1: makeSprite('1', L, P.head) }
+    }));
+  }
+
+  function makeSprite(ch, L, color) {
+    const pad = Math.ceil(L.blur * 2.5) + 3;
+    const w = Math.ceil(L.size * .7) + pad * 2, h = Math.ceil(L.size * 1.15) + pad * 2;
+    const c = document.createElement('canvas');
+    c.width = Math.ceil(w * dpr); c.height = Math.ceil(h * dpr);
+    const x = c.getContext('2d');
+    x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    x.font = `700 ${L.size}px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace`;
+    x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.fillStyle = color; x.shadowColor = color;
+    if (L.blur) { x.shadowBlur = L.blur * dpr; x.shadowOffsetX = 3000 * dpr; x.fillText(ch, w / 2 - 3000, h / 2); }
+    else { x.shadowBlur = 5 * dpr; x.fillText(ch, w / 2, h / 2); }
+    return { c, w, h };
+  }
+  function newStream(li, initial) {
+    const L = LAYERS[li];
+    const len = (L.len[0] + Math.random() * (L.len[1] - L.len[0])) | 0;
+    return {
+      li, len, x: Math.random() * W,
+      y: initial ? Math.random() * (H + len * L.gap) : -Math.random() * H * .4,
+      sp: L.speed[0] + Math.random() * (L.speed[1] - L.speed[0]),
+      g: Array.from({ length: len }, () => Math.random() < .5 ? '0' : '1')
+    };
+  }
+  function buildMatrix() {
+    W = innerWidth; H = innerHeight; dpr = Math.min(devicePixelRatio || 1, 1.5);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildSprites();
+    streams = [];
+    LAYERS.forEach((L, li) => {
+      const n = Math.max(3, Math.round(W * L.density));
+      for (let i = 0; i < n; i++) streams.push(newStream(li, true));
+    });
+  }
+  function drawMatrix(dt) {
+    const P = pal();
+    ctx.globalAlpha = 1; ctx.fillStyle = P.bg; ctx.fillRect(0, 0, W, H);
+    for (let i = 0; i < streams.length; i++) {
+      let s = streams[i]; const L = LAYERS[s.li];
+      s.y += s.sp * dt;
+      if (s.y - s.len * L.gap > H) streams[i] = s = newStream(s.li, false);
+      if (Math.random() < .06) s.g[(Math.random() * s.len) | 0] = Math.random() < .5 ? '0' : '1';
+      const sp = sprites[s.li];
+      for (let k = 0; k < s.len; k++) {
+        const yy = s.y - k * L.gap;
+        if (yy < -L.gap) break;
+        if (yy > H + L.gap) continue;
+        const im = (k === 0 ? sp.h : sp.b)[s.g[k]];
+        ctx.globalAlpha = L.alpha * P.k * Math.pow(1 - k / s.len, 1.5);
+        ctx.drawImage(im.c, s.x - im.w / 2, yy - im.h / 2, im.w, im.h);
+      }
+    }
+  }
+  function matrixLoop(now) {
+    mRaf = requestAnimationFrame(matrixLoop);
+    const dt = now - mLast;
+    if (dt < 1000 / 30) return;               // 30 кадров/с хватает и экономит батарею
+    mLast = now; drawMatrix(Math.min(dt, 100) / 1000);
+  }
+  buildMatrix();
+  if (reduce) drawMatrix(0); else mRaf = requestAnimationFrame(matrixLoop);
+  let rT;
+  addEventListener('resize', () => {
+    clearTimeout(rT);
+    rT = setTimeout(() => { if (innerWidth !== W || Math.abs(innerHeight - H) > 120) { buildMatrix(); drawMatrix(0); } }, 150);
+  });
+
+  /* =========================================================
+     ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ (круговое раскрытие от кнопки)
+     ========================================================= */
+  const root = document.documentElement, themeBtn = $('#themeBtn'), metaTheme = $('meta[name="theme-color"]');
+  const syncThemeUI = () => {
+    const light = root.dataset.theme === 'light';
+    themeBtn.setAttribute('aria-label', light ? 'Включить тёмную тему' : 'Включить светлую тему');
+    metaTheme.content = '#030B06';
+  };
+  const applyTheme = (light) => {
+    if (light) root.dataset.theme = 'light'; else delete root.dataset.theme;
+    try { localStorage.setItem('km-theme', light ? 'light' : 'dark'); } catch (e) {}
+    buildSprites(); drawMatrix(0); syncThemeUI();
+  };
+  syncThemeUI();
+  themeBtn.addEventListener('click', () => {
+    const light = root.dataset.theme !== 'light';
+    if (!document.startViewTransition || reduce) return applyTheme(light);
+    const r = themeBtn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+    root.style.setProperty('--tx', x + 'px'); root.style.setProperty('--ty', y + 'px');
+    root.style.setProperty('--tr', Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
+    document.startViewTransition(() => applyTheme(light));
+  });
+
+  /* Шапка и затемнение матрицы при скролле */
+  const topBar = $('.top');
+  const onScroll = () => {
+    topBar.classList.toggle('scrolled', scrollY > 20);
+    cv.style.opacity = (1 - Math.min(scrollY / innerHeight, 1) * .45).toFixed(3);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* =========================================================
+     3D-НОУТБУК
+     ========================================================= */
+  const hero = $('.hero'), stage = $('#stage'), lap = $('#laptop');
+  const rows = [Array(14).fill(2), [3, ...Array(11).fill(2), 3], [4, ...Array(10).fill(2), 4], [5, ...Array(9).fill(2), 5], [2, 2, 2, 12, 2, 2, 2, 2, 2]];
+  const keys = [];
+  const kf = document.createDocumentFragment();
+  rows.flat().forEach(s => { const k = document.createElement('i'); if (s !== 2) k.style.gridColumn = 'span ' + s; kf.appendChild(k); keys.push(k); });
+  $('#kb').appendChild(kf);
+  // Раскладка ЙЦУКЕН → индексы клавиш
+  const keyMap = { ' ': 53 };
+  'ЙЦУКЕНГШЩЗХ'.split('').forEach((c, i) => keyMap[c] = 15 + i);
+  'ФЫВАПРОЛДЖ'.split('').forEach((c, i) => keyMap[c] = 28 + i);
+  'ЯЧСМИТЬБЮ'.split('').forEach((c, i) => keyMap[c] = 40 + i);
+  const press = (ch) => {
+    const k = keys[keyMap[ch.toUpperCase()] ?? (Math.random() * 50 | 0)];
+    k.classList.add('hit'); setTimeout(() => k.classList.remove('hit'), 140);
+  };
+
+  const HOME_Y = -22, HOME_X = -16, FLY = 1600;
+  let ry = reduce ? HOME_Y : HOME_Y - 70, rx = HOME_X, vy = 0, vx = 0, hx = 0, hy = 0, thx = 0, thy = 0;
+  let dragging = false, px = 0, py = 0, moved = 0, downT = 0, lastInput = -1e9, scale = 1, visible = true, raf = 0;
+  let flyT0 = 0, landed = true;     // ноутбук сразу на месте и открывается, пока печатается заголовок
+
+  const fit = () => { const r = stage.getBoundingClientRect(); scale = clamp(Math.min(r.width / 600, r.height / 540), .5, 1.32); };
+  fit();
+  if ('ResizeObserver' in window) new ResizeObserver(fit).observe(stage); else addEventListener('resize', fit);
+
+  const giant = $('#giant');
+  const tick = (now) => {
+    raf = 0;
+    hx += (thx - hx) * .06; hy += (thy - hy) * .06;
+    if (!dragging) {
+      const idle = now - lastInput > 1400;
+      if (!idle || Math.abs(vy) > .04) { ry += vy; rx = clamp(rx + vx, -70, 6); vy *= .95; vx *= .9; }
+      if (idle) {
+        const turns = 360 * Math.round((ry - HOME_Y) / 360);
+        const ty = HOME_Y + turns + (reduce ? 0 : Math.sin(now / 2800) * 15) + hx;
+        const tx = HOME_X + (reduce ? 0 : Math.sin(now / 3700) * 3.5) + hy;
+        ry += (ty - ry) * .025; rx += (tx - rx) * .03;
+      }
+    }
+    // Вылет слева по дуге: позиция по кривой Безье, масштаб с перелётом (back-easing), докрутка в полёте
+    let fx = 0, fy = 0, k = 1, ery = 0, erx = 0;
+    if (!landed) {
+      if (!flyT0) { k = 0; }
+      else {
+        const p = clamp((now - flyT0) / FLY, 0, 1);
+        const e = 1 - Math.pow(1 - p, 3), u = 1 - e;
+        const r = stage.getBoundingClientRect();
+        const x0 = -(r.left + r.width / 2 + 260 * scale), y0 = r.height * .32;
+        const x1 = x0 * .3, y1 = -r.height * .62;
+        fx = u * u * x0 + 2 * u * e * x1; fy = u * u * y0 + 2 * u * e * y1;
+        const c = 1.9, q = p - 1;
+        k = .22 + .78 * (1 + (c + 1) * q * q * q + c * q * q);
+        ery = -230 * u; erx = 28 * u;
+        stage.style.opacity = Math.min(1, p * 3.5).toFixed(2);
+        if (p >= 1) { landed = true; stage.style.opacity = ''; hero.classList.add('landed'); }
+      }
+    }
+    lap.style.transform = `translate3d(${fx.toFixed(1)}px,${fy.toFixed(1)}px,0) scale(${(scale * k).toFixed(3)}) rotateX(${(rx + erx).toFixed(2)}deg) rotateY(${(ry + ery).toFixed(2)}deg)`;
+    lap.style.setProperty('--gx', (Math.sin((ry + ery) * Math.PI / 180) * 45).toFixed(1) + '%');
+    giant.style.translate = `${(-hx * 1.2).toFixed(1)}px ${(hy * 1.2).toFixed(1)}px`;
+    if (visible && !document.hidden) raf = requestAnimationFrame(tick);
+  };
+  const kick = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(tick); };
+
+  hero.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse' || reduce) return;
+    thx = (e.clientX / innerWidth - .5) * 16; thy = (e.clientY / innerHeight - .5) * -8;
+  });
+  hero.addEventListener('pointerleave', () => { thx = thy = 0; });
+
+  let typed = false, bootT = 0;
+  const setLid = (open) => {
+    lap.classList.toggle('open', open);
+    clearTimeout(bootT);
+    if (!open) lap.classList.remove('boot');
+    else if (typed) bootT = setTimeout(() => lap.classList.add('boot'), reduce ? 0 : 1000);
+  };
+  const toggleLid = () => setLid(!lap.classList.contains('open'));
+
+  // Тянуть = вращать, короткий клик = открыть/закрыть крышку
+  stage.addEventListener('pointerdown', (e) => {
+    if (!landed) return;
+    dragging = true; px = e.clientX; py = e.clientY; vy = vx = 0; moved = 0; downT = performance.now();
+    stage.setPointerCapture(e.pointerId);
+    stage.classList.add('dragging');
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - px, dy = e.clientY - py;
+    px = e.clientX; py = e.clientY; moved += Math.abs(dx) + Math.abs(dy);
+    vy = dx * .45; ry += vy;
+    if (e.pointerType === 'mouse') { vx = -dy * .3; rx = clamp(rx + vx, -70, 6); } else vx = 0;
+    lastInput = performance.now();
+    if (moved > 6) hero.classList.add('touched');
+  });
+  const endDrag = (e) => {
+    if (!dragging) return;
+    dragging = false; stage.classList.remove('dragging'); lastInput = performance.now();
+    if (e.type === 'pointerup' && moved < 6 && performance.now() - downT < 400) { vy = vx = 0; toggleLid(); }
+  };
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('keydown', (e) => {
+    const k = e.key;
+    if (k === 'ArrowLeft') vy = -5; else if (k === 'ArrowRight') vy = 5;
+    else if (k === 'ArrowUp') rx = clamp(rx - 8, -70, 6); else if (k === 'ArrowDown') rx = clamp(rx + 8, -70, 6);
+    else if (k === 'Enter' || k === ' ') toggleLid();
+    else return;
+    e.preventDefault(); lastInput = performance.now();
+  });
+
+  if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => { visible = en.isIntersecting; kick(); }).observe(stage);
+  document.addEventListener('visibilitychange', () => {
+    kick();
+    if (document.hidden) { cancelAnimationFrame(mRaf); mRaf = 0; }
+    else if (!reduce && !mRaf) { mLast = performance.now(); mRaf = requestAnimationFrame(matrixLoop); }
+  });
+  kick();
+
+  /* =========================================================
+     ИНТРО: ноутбук открывается, за ним печатается заголовок
+     ========================================================= */
+  const echo = $('#echo');
+  const seq = [];
+  giant.querySelectorAll('.ln').forEach((ln, li) => {
+    const t = ln.textContent.toUpperCase(); ln.textContent = '';
+    if (li > 0) seq.push({ br: true });
+    for (const ch of t) { const c = document.createElement('span'); c.className = 'c'; c.textContent = ch; ln.appendChild(c); seq.push({ el: c, ch }); }
+  });
+
+  // Заголовок всегда помещается по ширине экрана, с любым шрифтом
+  const fitGiant = () => {
+    giant.style.fontSize = '';
+    const fs = parseFloat(getComputedStyle(giant).fontSize);
+    const widest = Math.max(...[...giant.querySelectorAll('.ln')].map(l => l.scrollWidth));
+    const target = document.documentElement.clientWidth * .95;
+    if (widest > target) giant.style.fontSize = (fs * target / widest).toFixed(1) + 'px';
+  };
+  fitGiant();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGiant);
+  addEventListener('resize', fitGiant);
+
+  // Крышка открывается, за ноутбуком печатается заголовок,
+  // на клавиатуре загораются нужные клавиши, на экране набирается тот же текст
+  const finishTyping = () => {
+    typed = true;
+    giant.classList.remove('typing'); giant.classList.add('typed');
+    hero.classList.add('landed');
+    if (lap.classList.contains('open')) setTimeout(() => lap.classList.add('boot'), reduce ? 0 : 250);
+  };
+  if (reduce) {
+    seq.forEach(s => s.el && s.el.classList.add('on'));
+    seq[seq.length - 1].el.classList.add('cur');
+    echo.textContent = 'компьютерный мастер';
+    lap.classList.add('open'); finishTyping();
+  } else {
+    giant.classList.add('typing');
+    setTimeout(() => setLid(true), 250);
+    let i = 0, prev = null;
+    const next = () => {
+      if (i >= seq.length) return finishTyping();
+      const it = seq[i++];
+      if (it.br) { press(' '); echo.textContent += ' '; return setTimeout(next, 300); }
+      if (prev) prev.classList.remove('cur');
+      it.el.classList.add('on', 'cur'); prev = it.el;
+      press(it.ch); echo.textContent += it.ch.toLowerCase();
+      setTimeout(next, 70 + Math.random() * 90 + (Math.random() < .12 ? 170 : 0));
+    };
+    setTimeout(next, 800);
+  }
+
+  /* Часы вылетают при наведении на «всё это я могу сделать удалённо» */
+  const hlZone = $('#hlZone'), clock = $('#clock');
+  if (hlZone && clock) {
+    let shown = false, hideT = 0, slotT = 0;
+    const slot = hlZone.parentElement.querySelector('.clock-slot');
+    const showClock = () => {
+      clearTimeout(hideT);
+      if (shown) return; shown = true;
+      clearTimeout(slotT);
+      const r = hlZone.getBoundingClientRect();
+      const size = clock.offsetWidth, vw = document.documentElement.clientWidth;
+      const colRight = Math.max(...[...hlZone.closest('.about-text').querySelectorAll('p')].map(p => p.getBoundingClientRect().right));
+      if (vw - colRight - 16 >= size + 28) {
+        // Есть место справа от текста: часы рядом с фразой
+        clock.style.top = (r.top + scrollY + r.height / 2 - size / 2).toFixed(0) + 'px';
+        clock.style.left = (colRight + 28).toFixed(0) + 'px';
+      } else {
+        // Места нет (телефон): текст плавно раздвигается, часы влетают в свободное место под фразой
+        slot.style.setProperty('--slot', (size + 30) + 'px');
+        slot.classList.add('open');
+        const sr = slot.getBoundingClientRect(), pr = hlZone.closest('.about-text').getBoundingClientRect();
+        clock.style.top = (sr.top + scrollY + 15).toFixed(0) + 'px';
+        clock.style.left = (pr.left + (pr.width - size) / 2).toFixed(0) + 'px';
+      }
+      clock.classList.remove('hide'); void clock.offsetWidth; clock.classList.add('show');
+    };
+    const hideClock = () => {
+      if (!shown) return; shown = false;
+      clock.classList.remove('show'); void clock.offsetWidth; clock.classList.add('hide');
+      slotT = setTimeout(() => slot.classList.remove('open'), 450);
+    };
+    // Часы задерживаются на 3 секунды после того, как курсор ушёл (или после нажатия пальцем)
+    const LINGER = 3000;
+    const hideLater = () => { clearTimeout(hideT); hideT = setTimeout(hideClock, LINGER); };
+    hlZone.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') showClock(); });
+    hlZone.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hideLater(); });
+    // Нажатие (палец или мышь) всегда показывает часы и перезапускает 3 секунды
+    hlZone.addEventListener('click', (e) => { showClock(); if (e.pointerType !== 'mouse' || !hlZone.matches(':hover')) hideLater(); });
+    hlZone.addEventListener('focus', showClock);
+    hlZone.addEventListener('blur', hideLater);
+  }
+
+  /* =========================================================
+     ПОЯВЛЕНИЕ С БЛЮРОМ (каскадом внутри групп)
+     ========================================================= */
+  $$('[data-stagger]').forEach(g => [...g.children].forEach((c, i) => c.style.setProperty('--d', (i % 6) * 90 + 'ms')));
+  const reveals = $$('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('shown'));
+  else {
+    const io = new IntersectionObserver((ens) => ens.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('shown'); io.unobserve(en.target); }
+    }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  /* Блик на стекле следует за курсором */
+  let gRaf = 0, gEv = null;
+  document.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    gEv = e;
+    if (gRaf) return;
+    gRaf = requestAnimationFrame(() => {
+      gRaf = 0;
+      const el = gEv.target.closest && gEv.target.closest('.glass');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (gEv.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (gEv.clientY - r.top) + 'px');
+    });
+  }, { passive: true });
+
+  /* =========================================================
+     ВИДЕО: плеер грузится по клику
+     ========================================================= */
+  $$('.yt').forEach((b) => {
+    const id = b.dataset.id, img = b.querySelector('img');
+    const fallback = () => { if (!img.src.includes('hqdefault')) img.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; };
+    img.addEventListener('load', () => { if (img.naturalWidth < 200) fallback(); else img.classList.add('ok'); });
+    if (img.complete && img.naturalWidth >= 200) img.classList.add('ok');
+    img.addEventListener('error', fallback);
+    b.addEventListener('pointerenter', () => {
+      ['https://www.youtube.com', 'https://www.google.com', 'https://i.ytimg.com'].forEach(h => {
+        const l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; document.head.appendChild(l);
+      });
+    }, { once: true });
+    b.addEventListener('click', () => {
+      // Без сервера (file://) YouTube отказывается играть (ошибка 153), поэтому открываем ролик на YouTube
+      if (location.protocol === 'file:') {
+        window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
+        $('#vidNote').classList.add('on');
+        return;
+      }
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+      f.title = 'Компьютерный мастер в Новороссийске';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  });
+
+  /* Стрелка к видео рисуется при появлении секции */
+  const zone = $('#vidZone');
+  if (reduce || !('IntersectionObserver' in window)) zone.classList.add('in');
+  else {
+    const zio = new IntersectionObserver(([en]) => { if (en.isIntersecting) { zone.classList.add('in'); zio.disconnect(); } }, { threshold: .4 });
+    zio.observe(zone);
+  }
+
+  /* Отзывы: листание */
+  const track = $('#rvTrack');
+  $$('.rv-nav button').forEach(btn => btn.addEventListener('click', () => {
+    const card = track.querySelector('.rv');
+    track.scrollBy({ left: (card.offsetWidth + 18) * +btn.dataset.dir, behavior: reduce ? 'auto' : 'smooth' });
+  }));
+})();
+</script>
+</body>
+</html>
