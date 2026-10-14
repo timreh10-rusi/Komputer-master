@@ -317,6 +317,11 @@ html[data-theme="light"] .toast svg{color:#18A44E}
 .foot nav{display:flex;flex-wrap:wrap;gap:8px 24px}
 .foot a{text-decoration:none;transition:color .2s}
 .foot a:hover{color:var(--g-hi)}
+/* «Хочешь такой сайт?» — отдельной строкой справа внизу */
+.made-by{flex-basis:100%;display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:6px;color:var(--g-hi);font-weight:600}
+.made-by svg{width:16px;height:16px;flex:none;transition:scale .9s var(--spring)}
+.made-by:hover svg{scale:1.25}
+@media (max-width:640px){.made-by{justify-content:flex-start}}
 
 
 /* =========================================================
@@ -648,6 +653,7 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
       <a href="https://komputernyi-master.ru/politika-konfidentsialnosti/">Политика конфиденциальности</a>
       <a href="https://komputernyi-master.ru/polzovatelskoe-soglashenie/">Пользовательское соглашение</a>
     </nav>
+    <a class="made-by" href="https://t.me/TeketMontage?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%2C%20%D0%B7%D0%B0%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 4.2 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.4zM8.7 14.1l9.6-6.1c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.4-1.6-4.9z"/></svg>Хочешь такой сайт?</a>
   </div>
 </footer>
 
