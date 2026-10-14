@@ -261,7 +261,9 @@ h2{font:600 clamp(40px,5.6vw,80px)/.95 var(--display);text-transform:uppercase;l
 .hl{background:linear-gradient(transparent 58%,rgba(61,220,110,.32) 58%,rgba(61,220,110,.32) 92%,transparent 92%);color:var(--text);font-weight:600;padding:0 2px;border-radius:2px;transition:background .3s,color .3s}
 .hl-zone{transition:color .3s}
 .hl-zone:hover,.hl-zone:focus-visible{color:var(--g-hi)}
-.clock{position:absolute;left:0;top:0;width:176px;height:176px;z-index:20;pointer-events:none;perspective:700px;visibility:hidden;opacity:0}
+/* Рамка шириной ровно с экран: улетающие часы обрезаются ей и не раздвигают страницу на телефоне */
+.clock-clip{position:absolute;left:0;top:0;width:100%;height:0;overflow:hidden;pointer-events:none;z-index:20}
+.clock{position:absolute;left:0;top:40px;width:176px;height:176px;z-index:20;pointer-events:none;perspective:700px;visibility:hidden;opacity:0}
 .clock.show{visibility:visible;animation:clockIn .8s cubic-bezier(.22,1,.36,1) both}
 .clock.hide{visibility:visible;animation:clockOut .6s cubic-bezier(.64,0,.78,0) both}
 @keyframes clockIn{from{opacity:0;translate:180px 0;scale:.92}to{opacity:1;translate:0 0;scale:1}}
@@ -628,7 +630,7 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
 </section>
 </main>
 
-<div class="clock" id="clock" aria-hidden="true"><div class="clock-tilt"><div class="clock-face"><i class="hh"></i><i class="mh"></i><i class="sh"></i><b></b></div></div></div>
+<div class="clock-clip" id="clockClip" aria-hidden="true"><div class="clock" id="clock"><div class="clock-tilt"><div class="clock-face"><i class="hh"></i><i class="mh"></i><i class="sh"></i><b></b></div></div></div></div>
 
 <div class="toast glass" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></div>
 
@@ -965,6 +967,9 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
   if (hlZone && clock) {
     let shown = false, hideT = 0, slotT = 0;
     const slot = hlZone.parentElement.querySelector('.clock-slot');
+    const clip = $('#clockClip');
+    // Рамка с запасом 40px сверху и снизу под тень и наклон часов
+    const placeClip = (top, size) => { clip.style.top = (top - 40).toFixed(0) + 'px'; clip.style.height = (size + 80) + 'px'; };
     const showClock = () => {
       clearTimeout(hideT);
       if (shown) return; shown = true;
@@ -972,16 +977,16 @@ html[data-theme="light"] .theme-btn .i-moon{translate:0 -140%;rotate:90deg;opaci
       const r = hlZone.getBoundingClientRect();
       const size = clock.offsetWidth, vw = document.documentElement.clientWidth;
       const colRight = Math.max(...[...hlZone.closest('.about-text').querySelectorAll('p')].map(p => p.getBoundingClientRect().right));
-      if (vw - colRight - 16 >= size + 28) {
+      if (vw - colRight - 8 >= size + 20) {
         // Есть место справа от текста: часы рядом с фразой
-        clock.style.top = (r.top + scrollY + r.height / 2 - size / 2).toFixed(0) + 'px';
-        clock.style.left = (colRight + 28).toFixed(0) + 'px';
+        placeClip(r.top + scrollY + r.height / 2 - size / 2, size);
+        clock.style.left = (colRight + 20).toFixed(0) + 'px';
       } else {
         // Места нет (телефон): текст плавно раздвигается, часы влетают в свободное место под фразой
         slot.style.setProperty('--slot', (size + 30) + 'px');
         slot.classList.add('open');
         const sr = slot.getBoundingClientRect(), pr = hlZone.closest('.about-text').getBoundingClientRect();
-        clock.style.top = (sr.top + scrollY + 15).toFixed(0) + 'px';
+        placeClip(sr.top + scrollY + 15, size);
         clock.style.left = (pr.left + (pr.width - size) / 2).toFixed(0) + 'px';
       }
       clock.classList.remove('hide'); void clock.offsetWidth; clock.classList.add('show');
