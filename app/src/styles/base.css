@@ -54,11 +54,16 @@ html:not(.gl) body{background:
 .sec__intro{max-width:62ch;margin-top:clamp(18px,2.4vw,32px);display:grid;gap:.7em;font-size:var(--fs-lead);line-height:1.45;color:var(--text-2)}
 
 /* Стартовые состояния анимаций включаются только когда есть JS */
-.js [data-reveal]{opacity:0;transform:translate3d(0,26px,0)}
+.js [data-reveal]{opacity:0;transform:translate3d(0,28px,0);
+  transition:opacity 1s var(--ease) var(--d,0s),transform 1.35s var(--ease) var(--d,0s)}
+.js [data-reveal].is-in{opacity:1;transform:none}
 .js [data-split]{visibility:hidden}
 .js [data-split].is-split{visibility:visible}
+.js .h2 .w>span{transform:translate3d(0,112%,0);transition:transform 1.3s var(--ease) calc(var(--i,0) * 70ms)}
+.js .h2.is-in .w>span{transform:none}
 .km-fail [data-reveal]{opacity:1 !important;transform:none !important}
 .km-fail [data-split]{visibility:visible !important}
+.km-fail .h2 .w>span{transform:none !important}
 
 /* ---------- Кнопки ---------- */
 .btn{--h:52px;position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.6em;height:var(--h);padding:0 26px;border-radius:999px;

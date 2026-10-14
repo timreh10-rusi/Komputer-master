@@ -87,6 +87,7 @@
       <div class="hero__stage" id="stage" tabindex="0" role="img"
            aria-label="Трёхмерный ноутбук. Потяните, чтобы повернуть. Нажмите или Enter, чтобы открыть или закрыть крышку. Стрелки на клавиатуре тоже поворачивают его."></div>
 
+      <div class="hero__ui" id="heroUi">
       <div class="hero__copy" data-hero-in>
         <p class="lead">
           <span>Починю и настрою любую компьютерную технику.</span>
@@ -105,14 +106,15 @@
         <p class="hint" id="hint"><span class="hint__fine">Крутите ноутбук мышью, клик открывает крышку</span><span class="hint__touch">Проведите по ноутбуку, нажмите, чтобы открыть крышку</span></p>
       </div>
 
-      <a class="hero__cue" href="#services" aria-label="Листать дальше"><span>Листайте, починим</span><i aria-hidden="true"></i></a>
+      <a class="hero__cue" href="#services" aria-label="Листать дальше" data-hero-in><span>Листайте, починим</span><i aria-hidden="true"></i></a>
+      </div>
     </div>
   </section>
 
   <!-- ============ 01 · УСЛУГИ ============ -->
   <section class="sec svc" id="services" data-sec="services" data-label="Услуги" aria-labelledby="svc-h">
     <div class="wrap">
-      <header class="sec__head">
+      <header class="sec__head" data-rainmask>
         <p class="eyebrow" data-reveal><span>01</span>Услуги</p>
         <h2 class="h2" id="svc-h" data-split>Что я делаю</h2>
         <div class="sec__intro" data-reveal>
@@ -181,7 +183,7 @@
   <!-- ============ 02 · О МАСТЕРЕ ============ -->
   <section class="sec about" id="about" data-sec="about" data-label="О мастере" aria-labelledby="about-h">
     <div class="wrap">
-      <header class="sec__head">
+      <header class="sec__head" data-rainmask>
         <p class="eyebrow" data-reveal><span>02</span>О мастере</p>
         <h2 class="h2" id="about-h" data-split>Привет! Меня зовут&nbsp;Сергей</h2>
       </header>
@@ -205,11 +207,11 @@
       </div>
 
       <div class="about__text">
-        <blockquote class="quote" id="quote">
+        <blockquote class="quote" id="quote" data-rainmask>
           <p>У меня обслуживаются уже дети и внуки моих первых клиентов. Можно сказать, мои контакты передаются по наследству.</p>
         </blockquote>
 
-        <div class="about__cols">
+        <div class="about__cols" data-rainmask>
           <p class="about__p">Около двадцати лет я работаю с программным обеспечением. Установка Windows, настройка любых программ, восстановление данных, поиск и удаление вирусов: <mark class="hl">всё это я делаю удалённо.</mark> <span class="hl-zone" id="hlZone" tabindex="0">Так что вам не придётся ждать и подстраивать график под рабочий день мастера.</span></p>
           <p class="about__p">Со мной всегда можно договориться и решить проблему в удобное для вас время. Мои клиенты, как правило, становятся моими друзьями.</p>
         </div>
@@ -260,9 +262,9 @@
   <section class="sec cta" id="contact" data-sec="contact" data-label="Контакты" aria-labelledby="cta-h">
     <div class="wrap">
       <p class="eyebrow" data-reveal><span>04</span>Контакты</p>
-      <h2 class="h2 cta__h" id="cta-h" data-split>Расскажите, что&nbsp;случилось</h2>
-      <p class="cta__lead" data-reveal>Без выходных, с 9:00 до 23:00. Напишите в WhatsApp или позвоните, разберёмся вместе.</p>
-      <a class="cta__phone" id="phone" href="tel:+79024089022" data-copy-phone aria-label="Позвонить: +7 902 408-90-22">+7&nbsp;902&nbsp;408&#8209;90&#8209;22</a>
+      <h2 class="h2 cta__h" id="cta-h" data-split data-rainmask>Расскажите, что&nbsp;случилось</h2>
+      <p class="cta__lead" data-reveal data-rainmask>Без выходных, с 9:00 до 23:00. Напишите в WhatsApp или позвоните, разберёмся вместе.</p>
+      <a class="cta__phone" id="phone" href="tel:+79024089022" data-copy-phone aria-label="Позвонить: +7 902 408-90-22">+7&nbsp;902&nbsp;408-90-22</a>
       <div class="cta__row" data-reveal>
         <a class="btn btn--primary btn--lg" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
         <a class="btn btn--ghost btn--lg" data-magnetic href="tel:+79024089022" data-copy-phone><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Позвонить</a>
