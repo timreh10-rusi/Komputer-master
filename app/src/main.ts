@@ -61,6 +61,8 @@ async function boot() {
       });
       if (stage) {
         stage.beforeHeadline = fitGiant;
+        const slot = $('#globeSlot');
+        if (slot) stage.setGlobeSlot(slot);
         stage.collectMasks();
         ScrollTrigger.addEventListener('refresh', () => stage.collectMasks());
         ref.stage = stage;
@@ -72,12 +74,12 @@ async function boot() {
   })();
 
   const ready = Promise.all([glReady, document.fonts.ready]);
-  await Promise.all([runLoader(ready), ready]);
+  const [shown] = await Promise.all([runLoader(ready), ready]);
   heroIn();
   const gl = ref.stage;
   if (gl) {
     if (env.reduced || env.freeze != null) gl.settle(env.freeze ?? undefined);
-    else gl.playIntro();
+    else gl.playIntro(false, shown);
   }
   if (env.perf) initPerfPanel(() => (ref.stage ? ref.stage.info() : null));
 

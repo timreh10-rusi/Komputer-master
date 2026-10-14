@@ -29,7 +29,10 @@
 <script>
 /* Пока скрипт не отработал, контент остаётся видимым. Класс js включает стартовые состояния анимаций,
    а если приложение не запустилось за 6 секунд, km-fail всё показывает как есть. */
-(function(d){d.classList.add('js');setTimeout(function(){if(!d.classList.contains('km-ready'))d.classList.add('km-fail')},6000)})(document.documentElement);
+(function(d){d.classList.add('js');
+  /* загрузчик показываем один раз за сессию и не при «меньше движения» */
+  try{if(!sessionStorage.getItem('km-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/nointro|freeze/.test(location.search))d.classList.add('intro')}catch(e){}
+  setTimeout(function(){if(!d.classList.contains('km-ready'))d.classList.add('km-fail')},6000)})(document.documentElement);
 </script>
 </head>
 <body>
@@ -39,7 +42,17 @@
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="veil" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="loader" id="loader" aria-hidden="true" hidden></div>
+<div class="loader" id="loader" role="status" aria-label="Загрузка сайта">
+  <div class="loader__box">
+    <div class="loader__line"><span class="p">&gt;</span><span>проверка системы . . .</span></div>
+    <div class="loader__line err" id="ldErr"><span id="ldErrK">ОШИБКА:</span><span id="ldErrT">компьютер тормозит [0x7B]</span></div>
+    <div class="loader__line"><span class="p">&gt;</span><span>вызываю мастера . . .</span></div>
+    <div class="loader__line"><span class="p">master@novorossiysk:~$</span><span id="ldCmd"></span><i class="loader__cur"></i></div>
+    <div class="loader__bar"><i id="ldBar"></i></div>
+    <div class="loader__pct" id="ldPct">0%</div>
+    <div class="loader__skip">Нажмите любую клавишу, чтобы пропустить</div>
+  </div>
+</div>
 
 <header class="hdr" id="hdr">
   <div class="wrap hdr__in">
@@ -258,10 +271,30 @@
     <div class="wrap"><div class="rev__bar" aria-hidden="true"><i id="revBar"></i></div></div>
   </section>
 
-  <!-- ============ 04 · КОНТАКТЫ ============ -->
+  <!-- ============ 04 · УДАЛЁННО ============ -->
+  <section class="sec globe" id="remote" data-sec="remote" data-label="Удалённо" aria-labelledby="globe-h">
+    <div class="wrap globe__grid">
+      <div class="globe__text" data-rainmask>
+        <p class="eyebrow" data-reveal><span>04</span>Удалённо</p>
+        <h2 class="h2" id="globe-h" data-split>Удалённо, значит везде</h2>
+        <p class="globe__lead" data-reveal>Почти любую работу можно сделать удалённо: нужен только интернет. Поэтому мне пишут из разных городов и даже стран.</p>
+        <div class="globe__list" data-reveal>
+          <p class="globe__k">Среди клиентов</p>
+          <ul class="chips"><li>Новороссийск</li><li>Анапа</li><li>Ростов-на-Дону</li><li>Германия</li></ul>
+        </div>
+      </div>
+      <div class="globe__slot" id="globeSlot" role="img" aria-label="Глобус: сигналы из Новороссийска идут в Ростов-на-Дону и Германию">
+        <span class="glabel" data-city="nvr" data-dx="26" data-dy="30">Новороссийск, Анапа</span>
+        <span class="glabel" data-city="rnd" data-dx="46" data-dy="-30">Ростов-на-Дону</span>
+        <span class="glabel" data-city="de" data-dx="-30" data-dy="-30">Германия</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · КОНТАКТЫ ============ -->
   <section class="sec cta" id="contact" data-sec="contact" data-label="Контакты" aria-labelledby="cta-h">
     <div class="wrap">
-      <p class="eyebrow" data-reveal><span>04</span>Контакты</p>
+      <p class="eyebrow" data-reveal><span>05</span>Контакты</p>
       <h2 class="h2 cta__h" id="cta-h" data-split data-rainmask>Расскажите, что&nbsp;случилось</h2>
       <p class="cta__lead" data-reveal data-rainmask>Без выходных, с 9:00 до 23:00. Напишите в WhatsApp или позвоните, разберёмся вместе.</p>
       <a class="cta__phone" id="phone" href="tel:+79024089022" data-copy-phone aria-label="Позвонить: +7 902 408-90-22">+7&nbsp;902&nbsp;408-90-22</a>

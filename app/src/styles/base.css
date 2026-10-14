@@ -44,7 +44,7 @@ html:not(.gl) body{background:
 
 /* ---------- Типографика ---------- */
 .h2{font:600 var(--fs-h2)/.9 var(--f-display);text-transform:uppercase;letter-spacing:-.012em;color:var(--text);text-wrap:balance}
-.h2 .w{display:inline-block;overflow:clip;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.h2 .w{display:inline-block;overflow:clip;vertical-align:top;padding:.2em .04em .1em;margin:-.2em -.04em -.1em}
 .h2 .w>span{display:inline-block;will-change:transform}
 .eyebrow{display:inline-flex;align-items:center;gap:14px;font:500 12px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--g-300);margin-bottom:22px}
 .eyebrow span{display:inline-grid;place-items:center;min-width:34px;height:24px;padding:0 8px;border:1px solid var(--line-hi);border-radius:999px;color:var(--lime);letter-spacing:.06em}

@@ -12,13 +12,15 @@ export function fitGiant(): number {
   const widest = Math.max(...lines.map((l) => l.getBoundingClientRect().width));
   const target = frame.getBoundingClientRect().width;
   if (!widest || !target) return 0;
-  const size = Math.min(360, Math.max(36, (100 * target) / widest));
+  const pinH = giant.parentElement!.clientHeight;
+  const landscape = window.innerHeight <= 560 && window.innerWidth > window.innerHeight;
+  const size = Math.min(360, Math.max(36, Math.min((100 * target) / widest, pinH * (landscape ? 0.2 : 0.3))));
   giant.style.fontSize = size.toFixed(2) + 'px';
   // Блок не должен уходить под шапку на невысоких окнах
   const pin = giant.parentElement!;
   const hdr = $('.hdr__in')!.getBoundingClientRect();
-  const frac = window.innerWidth <= 820 ? 0.21 : 0.3;
-  const top = Math.max(pin.clientHeight * frac, hdr.bottom + 26 + giant.offsetHeight / 2);
+  const frac = landscape ? 0.28 : window.innerWidth <= 820 ? (window.innerHeight <= 720 ? 0.19 : 0.21) : 0.31;
+  const top = Math.max(pin.clientHeight * frac, hdr.bottom + 56 + giant.offsetHeight / 2);
   giant.style.top = top.toFixed(1) + 'px';
   return size;
 }

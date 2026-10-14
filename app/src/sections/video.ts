@@ -73,7 +73,7 @@ export function initVideo() {
     const p = d ? video.currentTime / d : 0;
     fill.style.transform = `scaleX(${p.toFixed(4)})`;
     prog.setAttribute('aria-valuenow', String(Math.round(p * 100)));
-    time.textContent = `${fmt(video.currentTime)} / ${fmt(d)}`;
+    time.textContent = d ? `${fmt(video.currentTime)} / ${fmt(d)}` : fmt(video.currentTime);
   };
   const loop = () => {
     sync();

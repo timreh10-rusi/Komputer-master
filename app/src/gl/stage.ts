@@ -18,6 +18,7 @@ import { Rain } from './rain';
 import { Headline } from './headline';
 import { Laptop, DIM } from './laptop';
 import { LaptopControls } from './controls';
+import type { Globe, CityKey } from './globe';
 import { PROMPT } from './screen';
 import { S } from '../core/state';
 import { env } from '../core/env';
@@ -79,6 +80,10 @@ export class Stage {
   private rebuildTimer = 0;
   private ac = new AbortController();
   private heroEndY = 0;
+  private globe: Globe | null = null;
+  private globeLoading = false;
+  private slot: { el: HTMLElement; labels: Array<{ el: HTMLElement; key: CityKey; dx: number; dy: number; w: number }>; left: number; top: number; size: number } | null = null;
+  private proj = { x: 0, y: 0, front: true };
   private maskRects: Array<{ x0: number; x1: number; top: number; bottom: number }> = [];
   /** подгонка DOM-заголовка перед пересборкой его текстуры */
   beforeHeadline: (() => void) | null = null;
@@ -206,6 +211,7 @@ export class Stage {
     this.upp = (2 * Z0 * Math.tan(MathUtils.degToRad(FOV / 2))) / H;
     this.layoutLaptop();
     this.layoutMasks();
+    this.measureSlot();
     this.heroEndY = this.heroEl.offsetTop + this.heroEl.offsetHeight - window.innerHeight;
     // текстура заголовка зависит от ширины окна: пересобираем с задержкой
     clearTimeout(this.rebuildTimer);
@@ -256,8 +262,37 @@ export class Stage {
     set('.hero__meta', this.rain.u.uMask1.value);
   }
 
+  /** Место глобуса на странице и подписи городов (DOM). */
+  setGlobeSlot(el: HTMLElement) {
+    const labels = Array.from(el.querySelectorAll<HTMLElement>('[data-city]')).map((l) => ({ el: l, key: l.dataset.city as CityKey, dx: Number(l.dataset.dx || 0), dy: Number(l.dataset.dy || -26), w: 0 }));
+    this.slot = { el, labels, left: 0, top: 0, size: 0 };
+    this.measureSlot();
+  }
+
+  private measureSlot() {
+    if (!this.slot) return;
+    const r = this.slot.el.getBoundingClientRect();
+    this.slot.left = r.left + window.scrollX;
+    this.slot.top = r.top + window.scrollY;
+    this.slot.size = Math.min(r.width, r.height);
+    for (const l of this.slot.labels) l.w = l.el.offsetWidth;
+  }
+
+  private async loadGlobe() {
+    this.globeLoading = true;
+    try {
+      const { Globe } = await import('./globe');
+      this.globe = new Globe(Q.tier <= 1);
+      this.globe.group.visible = false;
+      this.scene.add(this.globe.group);
+    } catch (err) {
+      console.warn('Глобус не загрузился', err);
+    }
+  }
+
   /** Текстовые блоки разделов (в координатах страницы): под ними дождь приглушается. */
   collectMasks() {
+    this.measureSlot();
     this.maskRects = Array.from(document.querySelectorAll<HTMLElement>('[data-rainmask]')).map((el) => {
       const r = el.getBoundingClientRect();
       return { x0: r.left, x1: r.right, top: r.top + window.scrollY, bottom: r.bottom + window.scrollY };
@@ -295,15 +330,22 @@ export class Stage {
   }
 
   /** Вступление: дождь, заголовок, подъём ноутбука, крышка, набор текста и журнал на экране. */
-  playIntro(instant = false): gsap.core.Timeline {
+  playIntro(instant = false, wipe = true): gsap.core.Timeline {
     const I = this.I;
     const scr = this.laptop.screen;
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     const hu = this.headline.u;
 
     tl.to(I, { reveal: 1, duration: 1.5, ease: 'power2.out' }, 0);
-    tl.to(hu.uReveal, { value: 1, duration: 1.25, ease: 'power3.inOut' }, 0.12);
-    tl.to(hu.uGlitch, { value: 0, duration: 1.3, ease: 'power2.out' }, 0.3);
+    if (wipe) {
+      tl.to(hu.uReveal, { value: 1, duration: 1.25, ease: 'power3.inOut' }, 0.12);
+      tl.to(hu.uGlitch, { value: 0, duration: 1.3, ease: 'power2.out' }, 0.3);
+    } else {
+      // без загрузчика заголовок уже виден как DOM-текст: подменяем его без «шторки», с коротким сбоем
+      hu.uReveal.value = 1;
+      hu.uGlitch.value = 0.6;
+      tl.to(hu.uGlitch, { value: 0, duration: 0.9, ease: 'power2.out' }, 0.1);
+    }
     tl.to(I, { rise: 1, duration: 1.7, ease: 'expo.out' }, 0.25);
     tl.to(I, { lid: 1, duration: 1.5, ease: 'elastic.out(1,0.55)' }, 0.7);
 
@@ -410,6 +452,9 @@ export class Stage {
 
     // ----- ноутбук -----
     const visible = this.I.rise > 0.001 && e < 0.995 && !afterDive;
+    this.cam.position.copy(this.basePos);
+    this.cam.up.copy(this.UP);
+    this.cam.lookAt(0, 0, 0);
     this.laptop.root.visible = visible;
     if (visible) {
       this.controls.update(dt, now, p < 0.4);
@@ -448,10 +493,38 @@ export class Stage {
         this.tgt.set(0, 0, 0).lerp(this.sp, e);
         this.cam.up.lerpVectors(this.UP, this.su, e).normalize();
         this.cam.lookAt(this.tgt);
-      } else {
-        this.cam.position.copy(this.basePos);
-        this.cam.up.copy(this.UP);
-        this.cam.lookAt(0, 0, 0);
+      }
+    }
+
+    // ----- глобус: рисуем только когда его место на странице в кадре -----
+    let globeVisible = false;
+    const sl = this.slot;
+    if (sl) {
+      const top = sl.top - S.y;
+      if (!this.globe && !this.globeLoading && top < this.H * 1.6 && top + sl.size > -this.H * 0.6) this.loadGlobe();
+      const gl = this.globe;
+      if (gl) {
+        globeVisible = top < this.H && top + sl.size > 0 && sl.size > 0;
+        gl.group.visible = globeVisible;
+        if (globeVisible) {
+          const R = sl.size * 0.5 * 0.84 * this.upp;
+          gl.group.position.set((sl.left + sl.size / 2 - this.W / 2) * this.upp, (this.H / 2 - (top + sl.size / 2)) * this.upp, 0);
+          gl.group.scale.setScalar(R);
+          const scalePx = ((this.H * this.px) / (2 * Math.tan(MathUtils.degToRad(FOV / 2)))) * R;
+          gl.update(env.freeze != null || reduced ? 3 : now * 0.001, scalePx, env.fine ? S.nx : 0);
+          gl.group.updateMatrixWorld(true);
+          this.cam.updateMatrixWorld(true);
+          for (const l of sl.labels) {
+            gl.project(l.key, this.cam, this.W, this.H, this.proj);
+            const lx = this.proj.x - (sl.left - window.scrollX);
+            const ly = this.proj.y - top;
+            // подпись не должна выходить за рамку глобуса: иначе на телефоне появится горизонтальный перелив
+            const half = l.w / 2 + 2;
+            const px = Math.min(sl.size - half, Math.max(half, lx + l.dx));
+            l.el.style.transform = `translate3d(${px.toFixed(1)}px,${(ly + l.dy).toFixed(1)}px,0) translate(-50%,-50%)`;
+            l.el.style.opacity = this.proj.front ? '1' : '0';
+          }
+        }
       }
     }
 
@@ -460,7 +533,7 @@ export class Stage {
     r.info.reset();
     r.clear();
     r.render(this.bgScene, this.bgCam);
-    if (visible) {
+    if (visible || globeVisible) {
       r.clearDepth();
       r.render(this.scene, this.cam);
     }

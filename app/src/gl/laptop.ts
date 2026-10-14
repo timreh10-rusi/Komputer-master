@@ -216,7 +216,7 @@ export class Laptop {
       this.keys.setMatrixAt(i, m);
       m.makeScale(k.w * 0.78, 1, k.d * 0.74).setPosition(k.x, keyTop + 0.0235, k.z);
       this.keyGlow.setMatrixAt(i, m);
-      this.keyGlow.setColorAt(i, this.color.setRGB(0.02, 0.1, 0.05));
+      this.keyGlow.setColorAt(i, this.color.setRGB(0.002, 0.01, 0.005));
       if (k.ch) this.charIndex.set(k.ch, i);
     });
     this.keys.instanceMatrix.needsUpdate = true;
@@ -321,7 +321,7 @@ export class Laptop {
   /** Гасит подсветку всех клавиш сразу (итоговый кадр без анимации). */
   resetGlow() {
     this.glow.fill(0);
-    for (let i = 0; i < this.glow.length; i++) this.keyGlow.setColorAt(i, this.color.setRGB(0.02, 0.1, 0.05));
+    for (let i = 0; i < this.glow.length; i++) this.keyGlow.setColorAt(i, this.color.setRGB(0.002, 0.01, 0.005));
     if (this.keyGlow.instanceColor) this.keyGlow.instanceColor.needsUpdate = true;
     this.glowActive = false;
   }
@@ -340,7 +340,7 @@ export class Laptop {
         } else if (g !== 0) {
           this.glow[i] = g = 0;
         }
-        this.keyGlow.setColorAt(i, this.color.setRGB(0.02 + g * 0.8, 0.1 + g * 1.5, 0.05 + g * 0.25));
+        this.keyGlow.setColorAt(i, this.color.setRGB(0.002 + g * 0.45, 0.01 + g * 0.9, 0.005 + g * 0.12));
       }
       this.keyGlow.instanceColor!.needsUpdate = true;
       this.glowActive = any;

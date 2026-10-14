@@ -1,19 +1,13 @@
 import gsap from 'gsap';
 import { $ } from './dom';
-import { env } from '../core/env';
 
 /**
  * Загрузчик в духе «система стартует»: ошибка, вызов мастера, команда repair --all.
- * Полоса прогресса привязана к реальной готовности (шрифты, 3D-сцена), но не быстрее ~1,6 с.
- * Показывается раз за сессию, пропускается кликом или любой клавишей.
+ * Разметка лежит прямо в HTML и показывается классом intro (его ставит скрипт в <head>),
+ * поэтому до запуска приложения ничего не мелькает. Полоса прогресса привязана к реальной
+ * готовности (шрифты, 3D-сцена), но не быстрее ~1,9 с. Раз за сессию, пропуск кликом или клавишей.
+ * Возвращает true, если загрузчик был показан.
  */
-const seen = () => {
-  try {
-    return sessionStorage.getItem('km-intro') === '1';
-  } catch {
-    return false;
-  }
-};
 const markSeen = () => {
   try {
     sessionStorage.setItem('km-intro', '1');
@@ -22,29 +16,15 @@ const markSeen = () => {
   }
 };
 
-export function runLoader(ready: Promise<unknown>): Promise<void> {
+export function runLoader(ready: Promise<unknown>): Promise<boolean> {
   const el = $('#loader');
   const html = document.documentElement;
-  const skip = !el || env.reduced || env.freeze != null || html.classList.contains('km-fail') || seen() || location.search.includes('nointro');
-  if (skip) {
+  if (!el || !html.classList.contains('intro') || html.classList.contains('km-fail')) {
     el?.remove();
-    return Promise.resolve();
+    html.classList.remove('intro');
+    return Promise.resolve(false);
   }
 
-  el.hidden = false;
-  el.removeAttribute('aria-hidden');
-  el.setAttribute('role', 'status');
-  el.setAttribute('aria-label', 'Загрузка сайта');
-  el.innerHTML = `
-    <div class="loader__box">
-      <div class="loader__line"><span class="p">&gt;</span><span>проверка системы . . .</span></div>
-      <div class="loader__line err" id="ldErr"><span id="ldErrK">ОШИБКА:</span><span id="ldErrT">компьютер тормозит [0x7B]</span></div>
-      <div class="loader__line"><span class="p">&gt;</span><span>вызываю мастера . . .</span></div>
-      <div class="loader__line"><span class="p">master@novorossiysk:~$</span><span id="ldCmd"></span><i class="loader__cur"></i></div>
-      <div class="loader__bar"><i id="ldBar"></i></div>
-      <div class="loader__pct" id="ldPct">0%</div>
-      <div class="loader__skip">Нажмите любую клавишу, чтобы пропустить</div>
-    </div>`;
   const lines = Array.from(el.querySelectorAll<HTMLElement>('.loader__line'));
   const bar = $('#ldBar', el)!;
   const pct = $('#ldPct', el)!;
@@ -58,44 +38,43 @@ export function runLoader(ready: Promise<unknown>): Promise<void> {
     pct.textContent = Math.round(prog.v * 100) + '%';
   };
 
-  return new Promise<void>((resolve) => {
+  return new Promise<boolean>((resolve) => {
     let finished = false;
+    let minTime = false;
+    let loaded = false;
     const tl = gsap.timeline();
     const at = [0.12, 0.5, 0.95, 1.35];
     lines.forEach((l, i) => tl.add(() => l.classList.add('is-on'), at[i]));
     const word = 'repair --all';
     tl.to({ k: 0 }, { k: 1, duration: 0.5, ease: 'none', onUpdate() { cmd.textContent = ' ' + word.slice(0, Math.round(this.progress() * word.length)); } }, 1.35);
     tl.to(prog, { v: 0.86, duration: 1.8, ease: 'power1.out', onUpdate: render }, 0.2);
-
-    let minTime = false;
-    let loaded = false;
-    const tryFinish = () => {
-      if (finished || !(minTime && loaded)) return;
-      finish(false);
-    };
     tl.add(() => {
       minTime = true;
       tryFinish();
     }, 1.9);
+
+    function tryFinish() {
+      if (!finished && minTime && loaded) finish(false);
+    }
     ready.finally(() => {
       loaded = true;
       tryFinish();
     });
     window.setTimeout(() => finish(false), 7000); // страховка: не держим человека дольше
 
-    const finish = (fast: boolean) => {
+    function finish(fast: boolean) {
       if (finished) return;
       finished = true;
       tl.kill();
       window.removeEventListener('keydown', onSkip);
-      el.removeEventListener('pointerdown', onSkip);
+      el!.removeEventListener('pointerdown', onSkip);
       lines.forEach((l) => l.classList.add('is-on'));
       gsap.to(prog, { v: 1, duration: fast ? 0.15 : 0.4, ease: 'power2.out', onUpdate: render });
       gsap.delayedCall(fast ? 0.15 : 0.4, () => {
         errLine.classList.remove('err');
         errK.textContent = 'ИСПРАВЛЕНО:';
         errT.textContent = 'компьютер летает';
-        (errK as HTMLElement).style.color = 'var(--lime)';
+        errK.style.color = 'var(--lime)';
       });
       gsap.delayedCall(fast ? 0.35 : 0.95, () => {
         markSeen();
@@ -103,11 +82,14 @@ export function runLoader(ready: Promise<unknown>): Promise<void> {
           clipPath: 'inset(0 0 100% 0)',
           duration: 0.95,
           ease: 'expo.inOut',
-          onComplete: () => el.remove(),
+          onComplete: () => {
+            el!.remove();
+            html.classList.remove('intro');
+          },
         });
-        resolve();
+        resolve(true);
       });
-    };
+    }
     const onSkip = () => finish(true);
     window.addEventListener('keydown', onSkip);
     el.addEventListener('pointerdown', onSkip);
