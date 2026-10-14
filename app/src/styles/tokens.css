@@ -1,0 +1,82 @@
+/* ============================================================
+   Шрифты (лежат в репозитории, без запросов к Google).
+   Подключаются по unicode-range: браузер качает только нужное.
+   ============================================================ */
+@font-face{font-family:'Onest';src:url('../fonts/onest-cyrillic.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Onest';src:url('../fonts/onest-latin.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2212,U+FEFF,U+FFFD}
+@font-face{font-family:'Onest';src:url('../fonts/onest-ruble.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+20BD}
+
+@font-face{font-family:'Oswald';src:url('../fonts/oswald-cyrillic.woff2') format('woff2');font-weight:200 700;font-style:normal;font-display:swap;
+  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Oswald';src:url('../fonts/oswald-latin.woff2') format('woff2');font-weight:200 700;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2212,U+FEFF,U+FFFD}
+@font-face{font-family:'Oswald';src:url('../fonts/oswald-ruble.woff2') format('woff2');font-weight:200 700;font-style:normal;font-display:swap;unicode-range:U+20BD}
+
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/jbmono-cyrillic.woff2') format('woff2');font-weight:100 800;font-style:normal;font-display:swap;
+  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/jbmono-latin.woff2') format('woff2');font-weight:100 800;font-style:normal;font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2212,U+FEFF,U+FFFD}
+
+@font-face{font-family:'Caveat';src:url('../fonts/caveat-cyrillic.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;
+  unicode-range:U+0020-0040,U+0410-044F,U+0401,U+0451,U+2014}
+
+/* ============================================================
+   Дизайн-токены: «богатый» зелёный на глубоком чёрно-зелёном
+   ============================================================ */
+:root{
+  /* поверхности */
+  --ink-0:#010604;
+  --ink-1:#020805;       /* фон страницы */
+  --ink-2:#06150E;       /* окна, карточки */
+  --ink-3:#0B241A;       /* приподнятые элементы */
+  --ink-4:#103427;
+
+  /* зелёный: фирменный, свечение, изумруд, лайм-акцент */
+  --g-600:#18A55A;
+  --g-500:#3DDC6E;       /* фирменный */
+  --g-400:#6BF59A;
+  --g-300:#A6FFC4;       /* свечение */
+  --g-200:#D3FFE3;
+  --emerald:#12C88A;
+  --teal:#0E8F7A;
+  --lime:#C8FF3D;        /* острый акцент: цифры, искры, ховеры */
+  --amber:#FFB020;       /* только для «сбоя» */
+  --red:#FF5470;
+
+  /* текст */
+  --text:#EEFFF4;
+  --text-2:#C2DDCD;
+  --muted:#8DB09B;
+
+  /* линии */
+  --line:rgba(166,255,196,.14);
+  --line-hi:rgba(166,255,196,.34);
+  --glow:0 0 40px rgba(61,220,110,.35);
+
+  /* шрифты */
+  --f-body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --f-display:'Oswald','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-hand:'Caveat','Segoe Print','Bradley Hand',cursive;
+
+  /* кривые */
+  --ease:cubic-bezier(.16,1,.3,1);            /* expo-out, появления */
+  --ease-io:cubic-bezier(.65,0,.35,1);
+  --spring:cubic-bezier(.34,1.7,.5,1);
+
+  /* сетка */
+  --gutter:clamp(16px,4vw,56px);
+  --maxw:1320px;
+  --r-lg:22px;
+  --r-md:14px;
+
+  /* типографика */
+  --fs-body:clamp(16px,.3vw + 14.8px,19px);
+  --fs-lead:clamp(18px,.55vw + 15.5px,24px);
+  --fs-h2:clamp(42px,8.4vw,136px);
+
+  --hdr-h:60px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}

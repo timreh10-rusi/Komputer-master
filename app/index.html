@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Компьютерный мастер в Новороссийске. Выезд и удалённо</title>
+<meta name="description" content="Ремонтирую и настраиваю любую компьютерную технику. Работаю на выезде и удалённо. Делаю, как для себя. Компьютерный мастер в Новороссийске.">
+<meta name="theme-color" content="#020805">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="%SITE_URL%/">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Компьютерный мастер">
+<meta property="og:title" content="Компьютерный мастер в Новороссийске. Выезд и удалённо">
+<meta property="og:description" content="Ремонтирую и настраиваю любую компьютерную технику. Работаю на выезде и удалённо.">
+<meta property="og:url" content="%SITE_URL%/">
+<meta property="og:image" content="%SITE_URL%/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Компьютерный мастер","description":"Ремонт и настройка компьютерной техники на выезде и удалённо","url":"%SITE_URL%/","telephone":"+7-902-408-90-22","address":{"@type":"PostalAddress","addressLocality":"Новороссийск","addressCountry":"RU"},"openingHours":"Mo-Su 09:00-23:00","priceRange":"от 100 ₽"}
+</script>
+
+<script>
+/* Пока скрипт не отработал, контент остаётся видимым. Класс js включает стартовые состояния анимаций,
+   а если приложение не запустилось за 6 секунд, km-fail всё показывает как есть. */
+(function(d){d.classList.add('js');setTimeout(function(){if(!d.classList.contains('km-ready'))d.classList.add('km-fail')},6000)})(document.documentElement);
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<!-- Один WebGL-холст на всю страницу: дождь, ноутбук, заголовок, глобус -->
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="loader" id="loader" aria-hidden="true" hidden></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#top" aria-label="Компьютерный мастер, на главную">
+      <svg class="logo__mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="logo__t">Компьютерный мастер</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#services" data-nav="services">Услуги</a>
+      <a href="#about" data-nav="about">О мастере</a>
+      <a href="#reviews" data-nav="reviews">Отзывы</a>
+      <a href="#contact" data-nav="contact">Контакты</a>
+      <a href="https://komputernyi-master.ru/stati/">Статьи</a>
+    </nav>
+    <div class="hdr__act">
+      <a class="phone" href="tel:+79024089022" data-copy-phone>+7 902 408-90-22</a>
+      <a class="btn btn--primary btn--sm" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+    </div>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Открыть меню"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav class="menu__nav" aria-label="Разделы, мобильное меню">
+    <a href="#services"><span>01</span>Услуги</a>
+    <a href="#about"><span>02</span>О мастере</a>
+    <a href="#reviews"><span>03</span>Отзывы</a>
+    <a href="#contact"><span>04</span>Контакты</a>
+    <a href="https://komputernyi-master.ru/stati/"><span>↗</span>Статьи</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="menu__phone" href="tel:+79024089022">+7 902 408-90-22</a>
+    <p class="menu__hours">Без выходных, с 9:00 до 23:00</p>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ 00 · ГЛАВНЫЙ ЭКРАН ============ -->
+  <section class="hero" id="top" data-sec="top" data-label="Диагностика" aria-labelledby="h1">
+    <h1 class="sr" id="h1">Компьютерный мастер в Новороссийске</h1>
+    <div class="hero__pin">
+      <p class="hero__giant" id="giant" aria-hidden="true"><span class="ln">Компьютерный</span><span class="ln">мастер</span></p>
+
+      <div class="hero__stage" id="stage" tabindex="0" role="img"
+           aria-label="Трёхмерный ноутбук. Потяните, чтобы повернуть. Нажмите или Enter, чтобы открыть или закрыть крышку. Стрелки на клавиатуре тоже поворачивают его."></div>
+
+      <div class="hero__copy" data-hero-in>
+        <p class="lead">
+          <span>Починю и настрою любую компьютерную технику.</span>
+          <span>Приеду на выезд или помогу удалённо.</span>
+          <span>Делаю, как для себя.</span>
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="tel:+79024089022" data-copy-phone><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Позвонить</a>
+        </div>
+      </div>
+
+      <div class="hero__meta" data-hero-in>
+        <p class="place">Новороссийск<span>на выезде и удалённо по всему миру</span></p>
+        <p class="status" id="status"><i aria-hidden="true"></i><span>Без выходных, с 9:00 до 23:00</span></p>
+        <p class="hint" id="hint"><span class="hint__fine">Крутите ноутбук мышью, клик открывает крышку</span><span class="hint__touch">Проведите по ноутбуку, нажмите, чтобы открыть крышку</span></p>
+      </div>
+
+      <a class="hero__cue" href="#services" aria-label="Листать дальше"><span>Листайте, починим</span><i aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <!-- ============ 01 · УСЛУГИ ============ -->
+  <section class="sec svc" id="services" data-sec="services" data-label="Услуги" aria-labelledby="svc-h">
+    <div class="wrap">
+      <header class="sec__head">
+        <p class="eyebrow" data-reveal><span>01</span>Услуги</p>
+        <h2 class="h2" id="svc-h" data-split>Что я делаю</h2>
+        <div class="sec__intro" data-reveal>
+          <p>Почти любую работу можно сделать удалённо, поэтому ко мне обращаются из разных городов и даже стран.</p>
+          <p>Если нужен мастер на месте, приеду сам в районе Новороссийска или посоветую надёжного специалиста в вашем городе.</p>
+        </div>
+      </header>
+
+      <div class="console win" id="console" data-reveal>
+        <div class="win__bar"><i></i><i></i><i></i><span class="win__title">услуги, master@novorossiysk</span></div>
+        <div class="console__body">
+          <div class="console__list" id="consoleList" role="tablist" aria-label="Услуги" aria-orientation="vertical">
+            <button class="tab" type="button" role="tab" id="tab-0" aria-controls="svc-0" data-i="0"><span class="tab__i">01</span><span class="tab__t">Ремонт и настройка техники</span></button>
+            <button class="tab" type="button" role="tab" id="tab-1" aria-controls="svc-1" data-i="1"><span class="tab__i">02</span><span class="tab__t">Удалённая помощь и консультации</span></button>
+            <button class="tab" type="button" role="tab" id="tab-2" aria-controls="svc-2" data-i="2"><span class="tab__i">03</span><span class="tab__t">Сетевое оборудование</span></button>
+            <button class="tab" type="button" role="tab" id="tab-3" aria-controls="svc-3" data-i="3"><span class="tab__i">04</span><span class="tab__t">Восстановление данных</span></button>
+            <button class="tab" type="button" role="tab" id="tab-4" aria-controls="svc-4" data-i="4"><span class="tab__i">05</span><span class="tab__t">Создание и продвижение сайтов</span></button>
+            <button class="tab" type="button" role="tab" id="tab-5" aria-controls="svc-5" data-i="5"><span class="tab__i">06</span><span class="tab__t">Продвижение бренда и товаров</span></button>
+            <button class="tab tab--ask" type="button" role="tab" id="tab-6" aria-controls="svc-6" data-i="6"><span class="tab__i">07</span><span class="tab__t">Не нашли свою проблему?</span></button>
+          </div>
+
+          <div class="console__panels" id="consolePanels">
+            <article class="panel" id="svc-0" role="tabpanel" aria-labelledby="tab-0" data-i="0">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="9" y="12" width="34" height="22" rx="3" pathLength="100"/><path d="M4 40h44l-3 4H7z" pathLength="100"/><path d="M22 20l-4 4 4 4M30 20l4 4-4 4" pathLength="100"/></svg>
+              <h3 class="panel__t">Ремонт и настройка компьютерной техники</h3>
+              <p>Ноутбуки любой сложности, стационарные компьютеры, моноблоки и планшеты. Быстро приеду на адрес.</p>
+              <ul class="chips"><li>Ноутбуки</li><li>Компьютеры</li><li>Моноблоки</li><li>Планшеты</li><li>Установка Windows</li></ul>
+            </article>
+            <article class="panel" id="svc-1" role="tabpanel" aria-labelledby="tab-1" data-i="1">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="9" width="40" height="27" rx="3" pathLength="100"/><path d="M18 44h16M26 36v8" pathLength="100"/><path d="M22 17l10 6-4.5 1.2L30 29l-2 1-2.6-4.6L22 28z" pathLength="100"/></svg>
+              <h3 class="panel__t">Удалённая помощь и консультации</h3>
+              <p>Техподдержка без выезда: поставлю программы, удалю вирусы, настрою систему. Вам нужен только интернет.</p>
+              <a class="panel__link" href="https://komputernyi-master.ru/udalennaya-pomosh/">Как это работает</a>
+            </article>
+            <article class="panel" id="svc-2" role="tabpanel" aria-labelledby="tab-2" data-i="2">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 20a26 26 0 0 1 36 0" pathLength="100"/><path d="M14 27a17 17 0 0 1 24 0" pathLength="100"/><path d="M20 34a8 8 0 0 1 12 0" pathLength="100"/><circle cx="26" cy="41" r="2" pathLength="100"/></svg>
+              <h3 class="panel__t">Настройка сетевого оборудования</h3>
+              <p>Подключу интернет, настрою роутер, модем и репитер. Увеличу радиус действия Wi-Fi.</p>
+            </article>
+            <article class="panel" id="svc-3" role="tabpanel" aria-labelledby="tab-3" data-i="3">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="10" y="8" width="32" height="36" rx="4" pathLength="100"/><circle cx="26" cy="23" r="8" pathLength="100"/><path d="M26 23l5-4M15 38h4" pathLength="100"/></svg>
+              <h3 class="panel__t">Восстановление утерянных данных</h3>
+              <p>Верну случайно удалённые файлы и данные с повреждённых жёстких дисков, флешек и телефонов.</p>
+            </article>
+            <article class="panel" id="svc-4" role="tabpanel" aria-labelledby="tab-4" data-i="4">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="10" width="40" height="32" rx="3" pathLength="100"/><path d="M6 18h40M11 14h1M15 14h1" pathLength="100"/><path d="M13 26h14M13 32h10M33 25h7v10h-7z" pathLength="100"/></svg>
+              <h3 class="panel__t">Создание и продвижение сайтов</h3>
+              <p>От лендинга до интернет-магазина, с продвижением в поиске и соцсетях: SEO, SMO, SMM.</p>
+            </article>
+            <article class="panel" id="svc-5" role="tabpanel" aria-labelledby="tab-5" data-i="5">
+              <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 40l11-12 8 7 15-17" pathLength="100"/><path d="M34 18h8v8" pathLength="100"/><path d="M8 46h36" pathLength="100"/></svg>
+              <h3 class="panel__t">Продвижение бренда и товаров</h3>
+              <p>Больше продаж и доверия к бренду через социальные сети и поисковые системы.</p>
+            </article>
+            <article class="panel panel--ask" id="svc-6" role="tabpanel" aria-labelledby="tab-6" data-i="6">
+              <h3 class="panel__t">Не нашли свою проблему?</h3>
+              <p>Опишите, что случилось. Подскажу, как решить, даже если этого нет в списке.</p>
+              <a class="btn btn--primary" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">Описать проблему</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · О МАСТЕРЕ ============ -->
+  <section class="sec about" id="about" data-sec="about" data-label="О мастере" aria-labelledby="about-h">
+    <div class="wrap">
+      <header class="sec__head">
+        <p class="eyebrow" data-reveal><span>02</span>О мастере</p>
+        <h2 class="h2" id="about-h" data-split>Привет! Меня зовут&nbsp;Сергей</h2>
+      </header>
+
+      <div class="about__video" id="aboutVideo">
+        <p class="note" id="note" aria-hidden="true">Минута о том, как я работаю</p>
+        <svg class="note__arrow" id="noteArrow" viewBox="0 0 200 160" aria-hidden="true"><path class="shaft" pathLength="1" d="M24 4C6 48 20 106 82 124c34 10 70 6 108-8"/><path class="head" pathLength="1" d="M164.3 112.5L190 116l-17.3 19.4"/></svg>
+
+        <div class="vcol">
+        <div class="win vwin" id="vwin">
+          <div class="win__bar"><i></i><i></i><i></i><span class="win__title">sergey.mp4</span><span class="win__meta">Минута о том, как я работаю</span></div>
+          <div class="vplayer" id="vplayer">
+            <video id="vid" width="1280" height="720" playsinline preload="none" poster="./poster.webp" controls aria-label="Видео: Сергей рассказывает о своей работе">
+              <source src="./sergey.mp4" type="video/mp4">
+              Ваш браузер не поддерживает видео. <a href="https://www.youtube.com/watch?v=J3VURZjh0a8">Смотреть на YouTube</a>
+            </video>
+          </div>
+        </div>
+        <a class="yt" href="https://www.youtube.com/watch?v=J3VURZjh0a8" target="_blank" rel="noopener"><svg class="yt__ic" aria-hidden="true"><use href="#i-yt"/></svg><span>Смотреть<br>на YouTube</span></a>
+        </div>
+      </div>
+
+      <div class="about__text">
+        <blockquote class="quote" id="quote">
+          <p>У меня обслуживаются уже дети и внуки моих первых клиентов. Можно сказать, мои контакты передаются по наследству.</p>
+        </blockquote>
+
+        <div class="about__cols">
+          <p class="about__p">Около двадцати лет я работаю с программным обеспечением. Установка Windows, настройка любых программ, восстановление данных, поиск и удаление вирусов: <mark class="hl">всё это я делаю удалённо.</mark> <span class="hl-zone" id="hlZone" tabindex="0">Так что вам не придётся ждать и подстраивать график под рабочий день мастера.</span></p>
+          <p class="about__p">Со мной всегда можно договориться и решить проблему в удобное для вас время. Мои клиенты, как правило, становятся моими друзьями.</p>
+        </div>
+
+        <dl class="facts">
+          <div class="fact"><dt><span class="num" data-count="20">20</span> лет</dt><dd>в&nbsp;IT</dd></div>
+          <div class="fact"><dt><span class="num" data-count="1000">1000</span>+</dt><dd>довольных клиентов</dd></div>
+          <div class="fact"><dt>от&nbsp;<span class="num" data-count="100">100</span>&nbsp;₽</dt><dd>стоимость работ</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="clock" id="clock" aria-hidden="true"><div class="clock__face"><i class="h"></i><i class="m"></i><i class="s"></i><b></b></div></div>
+  </section>
+
+  <!-- ============ 03 · ОТЗЫВЫ ============ -->
+  <section class="sec rev" id="reviews" data-sec="reviews" data-label="Отзывы" aria-labelledby="rev-h">
+    <div class="wrap">
+      <header class="sec__head sec__head--row">
+        <div>
+          <p class="eyebrow" data-reveal><span>03</span>Отзывы</p>
+          <h2 class="h2" id="rev-h" data-split>Что говорят клиенты</h2>
+        </div>
+        <div class="rev__nav" data-reveal>
+          <span class="rev__count" id="revCount" aria-hidden="true">01 / 10</span>
+          <button class="rev__btn" type="button" data-dir="-1" aria-label="Предыдущие отзывы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="rev__btn" type="button" data-dir="1" aria-label="Следующие отзывы"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </header>
+    </div>
+    <div class="rev__viewport" id="revViewport" tabindex="0" aria-label="Отзывы клиентов, листайте вбок">
+      <div class="rev__track" id="revTrack">
+        <figure class="card"><blockquote><p>Спасибо огромное! Сергей без преувеличения спас мой комп и меня саму с моими срочными заказами по работе. Комп после реанимации просто летает! Мне вас рекомендовали хорошие знакомые, и не зря.</p></blockquote><figcaption><strong>Ольга</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Сергей у нас как семейный доктор, только по компьютерной технике.</p></blockquote><figcaption><strong>Елена</strong><span>Германия</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Обращаемся уже на протяжении 7 лет. Выполняет работу чётко и грамотно, даже удалённо: помог из Новороссийска с ноутбуком, который находился в Ростове.</p></blockquote><figcaption><strong>Татьяна</strong><span>Ростов-на-Дону</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Качественный ремонт, установка нужных программ, ничего лишнего. Сергей внимательный и ответственный специалист, всё кратко и понятно объясняет, без лишних терминов, всегда на связи.</p></blockquote><figcaption><strong>Екатерина</strong><span>Анапа</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Не первый раз пользуюсь услугами Сергея и очень рад: всегда быстро приезжает, хорошие цены. Рекомендую.</p></blockquote><figcaption><strong>Константин Т.</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Переустанавливал Windows после моих долгих и мучительных попыток сделать это самой после вирусной атаки. Поставил качественно и оперативно. Рекомендую как специалиста, знающего своё дело!</p></blockquote><figcaption><strong>Марина Калинина</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Обращалась к Сергею не раз. Очень хороший и честный мастер! Даже в выходной или после рабочего дня старался приехать или подключиться удалённо и решить проблему.</p></blockquote><figcaption><strong>Елизавета</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Прекрасный специалист, просто талант. Я его постоянная клиентка: профессионал своего дела, с ним всегда можно договориться.</p></blockquote><figcaption><strong>Ирина Т.</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Отличный специалист за демократичные цены, в помощь студентам и не только. Выполнил работу на все сто.</p></blockquote><figcaption><strong>Лариса</strong><span>Новороссийск</span></figcaption></figure>
+        <figure class="card"><blockquote><p>Всем довольны! Мастер супер! Всё быстро и комфортно!</p></blockquote><figcaption><strong>Инна</strong><span>Новороссийск</span></figcaption></figure>
+      </div>
+    </div>
+    <div class="wrap"><div class="rev__bar" aria-hidden="true"><i id="revBar"></i></div></div>
+  </section>
+
+  <!-- ============ 04 · КОНТАКТЫ ============ -->
+  <section class="sec cta" id="contact" data-sec="contact" data-label="Контакты" aria-labelledby="cta-h">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal><span>04</span>Контакты</p>
+      <h2 class="h2 cta__h" id="cta-h" data-split>Расскажите, что&nbsp;случилось</h2>
+      <p class="cta__lead" data-reveal>Без выходных, с 9:00 до 23:00. Напишите в WhatsApp или позвоните, разберёмся вместе.</p>
+      <a class="cta__phone" id="phone" href="tel:+79024089022" data-copy-phone aria-label="Позвонить: +7 902 408-90-22">+7&nbsp;902&nbsp;408&#8209;90&#8209;22</a>
+      <div class="cta__row" data-reveal>
+        <a class="btn btn--primary btn--lg" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+        <a class="btn btn--ghost btn--lg" data-magnetic href="tel:+79024089022" data-copy-phone><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Позвонить</a>
+      </div>
+      <p class="cta__ok" id="ctaOk" aria-hidden="true"><i></i>Система в порядке. Осталось написать мне.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <span class="ftr__c">© <span id="year">2026</span> Компьютерный мастер, Новороссийск</span>
+    <nav class="ftr__nav" aria-label="Документы">
+      <a href="https://komputernyi-master.ru/udalennaya-pomosh/">Удалённая помощь</a>
+      <a href="https://komputernyi-master.ru/politika-konfidentsialnosti/">Политика конфиденциальности</a>
+      <a href="https://komputernyi-master.ru/polzovatelskoe-soglashenie/">Пользовательское соглашение</a>
+    </nav>
+    <a class="made" href="https://t.me/TeketMontage?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%2C%20%D0%B7%D0%B0%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BE%D0%B2%D0%B0%D0%BB%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-tg"/></svg>Хочешь такой сайт?</a>
+  </div>
+</footer>
+
+<!-- Индикатор «здоровья системы»: растёт по мере прокрутки -->
+<aside class="hud" id="hud" aria-hidden="true">
+  <span class="hud__k">SYS HEALTH</span>
+  <span class="hud__bar"><i id="hudFill"></i></span>
+  <b class="hud__v" id="hudVal">12%</b>
+  <span class="hud__s" id="hudSec">00 / Диагностика</span>
+</aside>
+
+<!-- Мобильная панель связи -->
+<nav class="dock" id="dock" aria-label="Связаться">
+  <a class="btn btn--ghost" href="tel:+79024089022"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Позвонить</a>
+  <a class="btn btn--primary" href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+</nav>
+
+<div class="cursor" id="cursor" aria-hidden="true"><i class="cursor__dot"></i><span class="cursor__ring"><b class="cursor__label"></b></span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#3DDC6E"/><g><rect x="7.5" y="7.5" width="17" height="12.5" rx="2.2" fill="none" stroke="#032010" stroke-width="2"/><path d="M11 11.6l2.5 2.2-2.5 2.2" fill="none" stroke="#032010" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="15" y="15.2" width="4.6" height="1.8" rx=".9" fill="#032010"/></g><path d="M4.5 22.4h23l-1.7 2.6H6.2z" fill="#032010"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.2.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-yt" viewBox="0 0 28 20"><rect width="28" height="20" rx="5.5" fill="#FF0033"/><path d="M11.2 5.6v8.8l7.6-4.4z" fill="#fff"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 4.2 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.4zM8.7 14.1l9.6-6.1c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.4-1.6-4.9z"/></symbol>
+  </defs>
+</svg>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
