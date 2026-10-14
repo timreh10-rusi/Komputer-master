@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://komputernyi-master.ru/sitemap.xml

@@ -19,8 +19,13 @@ export const env = {
   nogl: params.has('nogl') || (window as unknown as { __KM_NOGL?: boolean }).__KM_NOGL === true,
   forceTier: params.has('tier') ? Number(params.get('tier')) : null,
   lockTier: params.has('lock'),
+  /** принудительно включить WebGL, даже если отрисовка программная (для проверок) */
+  forceGL: params.has('gl') || params.has('tier'),
+  /** служебные режимы для генерации картинок: ?poster (ноутбук на прозрачном фоне), ?og (превью для соцсетей) */
+  poster: params.has('poster'),
+  og: params.has('og'),
   /** детерминированный кадр для скриншотов: ?freeze=секунды */
-  freeze: params.has('freeze') ? Number(params.get('freeze')) : null,
+  freeze: params.has('freeze') || params.has('poster') || params.has('og') ? Number(params.get('freeze') ?? 8) : null,
 };
 
 /** Широкая раскладка: закреплённые экраны и горизонтальная лента отзывов */

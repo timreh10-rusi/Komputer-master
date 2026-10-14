@@ -23,13 +23,11 @@ export function splitHeading(el: HTMLElement) {
 /** Слова цитаты: каждое в своём span, чтобы зажигать по мере прокрутки. */
 export function splitWords(el: HTMLElement, cls = 'qw'): HTMLElement[] {
   const text = el.textContent ?? '';
-  el.setAttribute('aria-label', text);
   el.textContent = '';
   const out: HTMLElement[] = [];
   text.split(' ').forEach((w, i, arr) => {
     const s = document.createElement('span');
     s.className = cls;
-    s.setAttribute('aria-hidden', 'true');
     s.textContent = w;
     el.appendChild(s);
     out.push(s);

@@ -143,6 +143,7 @@ export class Laptop {
   private metal: MeshStandardMaterial | MeshPhongMaterial;
   private keyMat: MeshStandardMaterial | MeshPhongMaterial;
   private floorGlow: Mesh;
+  private shadowMesh: Mesh;
   private floorGlowMat: MeshBasicMaterial;
   private logoMat: MeshBasicMaterial;
 
@@ -159,10 +160,10 @@ export class Laptop {
 
     const lite = !Q.ibl;
     this.metal = lite
-      ? new MeshPhongMaterial({ color: 0x1b2822, specular: 0x4c7a62, shininess: 70 })
+      ? new MeshPhongMaterial({ color: 0x2c3d35, specular: 0x8fc4a8, shininess: 90, emissive: 0x06100b })
       : new MeshStandardMaterial({ color: 0x1b2822, metalness: 0.86, roughness: 0.36 });
     this.keyMat = lite
-      ? new MeshPhongMaterial({ color: 0x0b1410, specular: 0x24402f, shininess: 40 })
+      ? new MeshPhongMaterial({ color: 0x121f19, specular: 0x34604a, shininess: 40, emissive: 0x030806 })
       : new MeshStandardMaterial({ color: 0x0b1410, metalness: 0.2, roughness: 0.72, envMapIntensity: 0.22 });
     const dark = new MeshBasicMaterial({ color: 0x020604, toneMapped: false });
     const deck = new MeshBasicMaterial({ color: 0x050a07, toneMapped: false });
@@ -296,12 +297,19 @@ export class Laptop {
     this.disposables.push(shadowMat);
     const shadowGeo = track(new PlaneGeometry(5.4, 3.8)) as BufferGeometry;
     const shadow = new Mesh(shadowGeo, shadowMat);
+    this.shadowMesh = shadow;
     shadow.rotation.x = -Math.PI / 2;
     shadow.position.set(0, -0.012, 0.15);
     shadow.renderOrder = -2;
     this.content.add(shadow);
 
     this.setLid(0);
+  }
+
+  /** Режим съёмки картинки: без свечения и тени на «столе», они обрезались бы краем кадра. */
+  posterMode() {
+    this.floorGlow.visible = false;
+    this.shadowMesh.visible = false;
   }
 
   /** v: 0 — закрыт, 1 — открыт (допускается небольшой перелёт для «пружины») */

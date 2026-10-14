@@ -32,6 +32,8 @@ const Z0 = 9;
 const TYPED = 'компьютерный мастер';
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
+const nextFrame = () => new Promise<void>((r) => requestAnimationFrame(() => r()));
+
 /**
  * Единая WebGL-сцена страницы. Порядок отрисовки:
  *   1) дождь (полноэкранный шейдер)  2) заголовок-текстура  3) ноутбук (перспектива, глубина очищается заново)
@@ -42,8 +44,8 @@ export class Stage {
   private renderer: WebGLRenderer;
   private bgScene = new Scene();
   private bgCam = new OrthographicCamera(0, 1, 1, 0, -10, 10);
-  private scene = new Scene();
-  private cam = new PerspectiveCamera(FOV, 1, 0.1, 80);
+  readonly scene = new Scene();
+  readonly cam = new PerspectiveCamera(FOV, 1, 0.1, 80);
   private pmrem: PMREMGenerator;
   private envTex: Texture | null = null;
 
@@ -106,7 +108,7 @@ export class Stage {
 
     renderer.autoClear = false;
     renderer.info.autoReset = false;
-    renderer.setClearColor(0x020805, 1);
+    renderer.setClearColor(env.poster ? 0x000000 : 0x020805, env.poster ? 0 : 1);
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
 
@@ -127,6 +129,7 @@ export class Stage {
     fill.position.set(4, -1, 2);
     this.scene.add(key, rim, fill);
     this.applyIbl();
+    if (env.poster) this.laptop.posterMode();
 
     this.controls = new LaptopControls(
       els.stage,
@@ -164,7 +167,7 @@ export class Stage {
   static async create(canvas: HTMLCanvasElement, els: { pin: HTMLElement; stage: HTMLElement; giant: HTMLElement; hero: HTMLElement }): Promise<Stage | null> {
     let renderer: WebGLRenderer;
     try {
-      renderer = new WebGLRenderer({ canvas, antialias: Q.msaa, alpha: false, powerPreference: 'high-performance', stencil: false, depth: true });
+      renderer = new WebGLRenderer({ canvas, antialias: Q.msaa || env.poster, alpha: env.poster, powerPreference: 'high-performance', stencil: false, depth: true });
       if (!renderer.getContext()) return null;
     } catch {
       return null;
@@ -176,6 +179,13 @@ export class Stage {
       document.fonts.load('700 120px Oswald', 'КОМПЬЮТЕРНЫЙ'),
     ]).catch(() => undefined);
     const stage = new Stage(canvas, renderer, els);
+    // Тяжёлые шаги разносим по кадрам и компилируем шейдеры без блокировки главного потока
+    await nextFrame();
+    try {
+      if (renderer.extensions.has('KHR_parallel_shader_compile')) await renderer.compileAsync(stage.scene, stage.cam);
+    } catch {
+      /* не критично: шейдеры соберутся при первой отрисовке */
+    }
     await stage.headline.build(els.giant, els.pin, stage.px);
     stage.placeHeadline();
     stage.renderOnce();
@@ -317,7 +327,7 @@ export class Stage {
 
   private applyIbl() {
     if (Q.ibl && !this.envTex) {
-      this.envTex = this.pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      this.envTex = this.pmrem.fromScene(new RoomEnvironment(), 0.04, 0.1, 100, { size: 128 }).texture;
     }
     this.scene.environment = Q.ibl ? this.envTex : null;
     this.scene.environmentIntensity = 0.55;
@@ -443,6 +453,11 @@ export class Stage {
     this.updateMasks();
     if (env.fine && S.pointerActive) ru.uMouse.value.set(S.px * this.px, (this.H - S.py) * this.px);
     else ru.uMouse.value.set(-1e5, -1e5);
+
+    if (env.poster) {
+      this.rain.mesh.visible = false;
+      this.headline.mesh.visible = false;
+    }
 
     // ----- заголовок -----
     const hu = this.headline.u;

@@ -22,6 +22,7 @@ const FIRST = Number(arg('first', 5000)); // ожидание первой от�
 const STATIC = !!arg('static', false); // km-fail: показать всё без анимаций (базовая вёрстка)
 const NOGL = !!arg('nogl', false);
 const FULL = !!arg('full', false);
+const REDUCED = !!arg('reduced', false);
 
 const ALL = {
   desktop: { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, isMobile: false, hasTouch: false },
@@ -42,7 +43,7 @@ const browser = await chromium.launch({
 for (const name of PROFILES) {
   const p = ALL[name];
   if (!p) { console.log('нет профиля', name); continue; }
-  const ctx = await browser.newContext({ ...p, locale: 'ru-RU', timezoneId: 'Europe/Moscow', reducedMotion: 'no-preference' });
+  const ctx = await browser.newContext({ ...p, locale: 'ru-RU', timezoneId: 'Europe/Moscow', reducedMotion: REDUCED ? 'reduce' : 'no-preference' });
   const page = await ctx.newPage();
   const logs = [], fails = [];
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type())) logs.push(`[${m.type()}] ${m.text()}`); });

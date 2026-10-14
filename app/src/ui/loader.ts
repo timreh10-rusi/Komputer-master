@@ -8,6 +8,9 @@ import { $ } from './dom';
  * готовности (шрифты, 3D-сцена), но не быстрее ~1,9 с. Раз за сессию, пропуск кликом или клавишей.
  * Возвращает true, если загрузчик был показан.
  */
+/** main.ts ставит fast, если 3D не нужен (слабая графика): тогда загрузчик заканчивается раньше */
+export const loaderOpts = { fast: false };
+
 const markSeen = () => {
   try {
     sessionStorage.setItem('km-intro', '1');
@@ -52,6 +55,12 @@ export function runLoader(ready: Promise<unknown>): Promise<boolean> {
       minTime = true;
       tryFinish();
     }, 1.9);
+    tl.add(() => {
+      if (loaderOpts.fast) {
+        minTime = true;
+        tryFinish();
+      }
+    }, 0.9);
 
     function tryFinish() {
       if (!finished && minTime && loaded) finish(false);

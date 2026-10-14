@@ -3,9 +3,10 @@ import { $ } from './ui/dom';
 import { env } from './core/env';
 import { S } from './core/state';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { initQuality, Q } from './core/quality';
+import { initQuality, Q, forceTier } from './core/quality';
 import { initScroll, refreshSoon } from './core/scroll';
 import { initPointer } from './core/pointer';
+import { probeGL } from './core/gpu';
 import { initPerfPanel } from './core/perf';
 import { fitGiant, initHeroScroll, heroIn } from './sections/hero';
 import { initReveal } from './ui/reveal';
@@ -14,7 +15,7 @@ import { initCursor } from './ui/cursor';
 import { initHeader } from './ui/header';
 import { initHud } from './ui/hud';
 import { initMisc } from './ui/misc';
-import { runLoader } from './ui/loader';
+import { runLoader, loaderOpts } from './ui/loader';
 import { initServices } from './sections/services';
 import { initVideo } from './sections/video';
 import { initAbout } from './sections/about';
@@ -26,6 +27,8 @@ async function boot() {
   const root = document.documentElement;
   root.classList.add('km-ready'); // скрипт жив: отменяем страховку km-fail
   root.classList.toggle('is-touch', env.coarse);
+  root.classList.toggle('poster', env.poster);
+  root.classList.toggle('og', env.og);
 
   initQuality();
   initScroll();
@@ -50,7 +53,16 @@ async function boot() {
   const glReady = (async () => {
     await fonts;
     fitGiant();
-    if (env.nogl || Q.tier === 0) return;
+    if (env.nogl || Q.tier === 0) {
+      loaderOpts.fast = true;
+      return;
+    }
+    // слабая или программная графика: оставляем лёгкую версию и не качаем 3D вовсе
+    if (!env.forceGL && (await probeGL()) !== 'ok') {
+      forceTier(0);
+      loaderOpts.fast = true;
+      return;
+    }
     try {
       const { Stage } = await import('./gl/stage');
       const stage = await Stage.create($<HTMLCanvasElement>('#gl')!, {
@@ -59,6 +71,7 @@ async function boot() {
         giant: $('#giant')!,
         hero: $('.hero')!,
       });
+      if (!stage) forceTier(0);
       if (stage) {
         stage.beforeHeadline = fitGiant;
         const slot = $('#globeSlot');
@@ -97,4 +110,8 @@ async function boot() {
   (window as unknown as { __km: unknown }).__km = { S, Q, get stage() { return ref.stage; } };
 }
 
-boot();
+// Любая ошибка при запуске: показываем сайт в базовом виде, а не пустую страницу
+boot().catch((err) => {
+  console.error('Сбой запуска, включён базовый вид', err);
+  document.documentElement.classList.add('km-fail');
+});

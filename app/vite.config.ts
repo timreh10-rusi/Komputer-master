@@ -41,6 +41,15 @@ function repoRootAssets(): Plugin {
 function htmlTweaks(siteUrl: string): Plugin {
   return {
     name: 'html-tweaks',
+    generateBundle() {
+      const site = siteUrl.replace(/\/$/, '');
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n` });
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${site}/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>\n</urlset>\n`,
+      });
+    },
     transformIndexHtml: {
       order: 'post',
       handler(html, ctx) {

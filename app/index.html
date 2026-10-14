@@ -10,6 +10,7 @@
 <link rel="canonical" href="%SITE_URL%/">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="manifest" href="./manifest.webmanifest">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -30,8 +31,10 @@
 /* Пока скрипт не отработал, контент остаётся видимым. Класс js включает стартовые состояния анимаций,
    а если приложение не запустилось за 6 секунд, km-fail всё показывает как есть. */
 (function(d){d.classList.add('js');
+  /* открыт файл двойным щелчком: модули там не запускаются, поэтому сразу показываем всё как есть */
+  if(location.protocol==='file:')d.classList.add('km-fail');
   /* загрузчик показываем один раз за сессию и не при «меньше движения» */
-  try{if(!sessionStorage.getItem('km-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/nointro|freeze/.test(location.search))d.classList.add('intro')}catch(e){}
+  try{if(!sessionStorage.getItem('km-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/[?&](nointro|freeze|poster|og)\b/.test(location.search))d.classList.add('intro')}catch(e){}
   setTimeout(function(){if(!d.classList.contains('km-ready'))d.classList.add('km-fail')},6000)})(document.documentElement);
 </script>
 </head>
@@ -42,6 +45,7 @@
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="veil" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+<div class="og-cap" aria-hidden="true"><span>Ремонт и настройка компьютерной техники. Выезд и удалённо.</span><b>+7 902 408-90-22</b></div>
 <div class="loader" id="loader" role="status" aria-label="Загрузка сайта">
   <div class="loader__box">
     <div class="loader__line"><span class="p">&gt;</span><span>проверка системы . . .</span></div>
@@ -119,7 +123,7 @@
         <p class="hint" id="hint"><span class="hint__fine">Крутите ноутбук мышью, клик открывает крышку</span><span class="hint__touch">Проведите по ноутбуку, нажмите, чтобы открыть крышку</span></p>
       </div>
 
-      <a class="hero__cue" href="#services" aria-label="Листать дальше" data-hero-in><span>Листайте, починим</span><i aria-hidden="true"></i></a>
+      <a class="hero__cue" href="#services" data-hero-in><span>Листайте, починим</span><i aria-hidden="true"></i></a>
       </div>
     </div>
   </section>
@@ -150,43 +154,43 @@
           </div>
 
           <div class="console__panels" id="consolePanels">
-            <article class="panel" id="svc-0" role="tabpanel" aria-labelledby="tab-0" data-i="0">
+            <div class="panel" id="svc-0" role="tabpanel" aria-labelledby="tab-0" data-i="0">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="9" y="12" width="34" height="22" rx="3" pathLength="100"/><path d="M4 40h44l-3 4H7z" pathLength="100"/><path d="M22 20l-4 4 4 4M30 20l4 4-4 4" pathLength="100"/></svg>
               <h3 class="panel__t">Ремонт и настройка компьютерной техники</h3>
               <p>Ноутбуки любой сложности, стационарные компьютеры, моноблоки и планшеты. Быстро приеду на адрес.</p>
               <ul class="chips"><li>Ноутбуки</li><li>Компьютеры</li><li>Моноблоки</li><li>Планшеты</li><li>Установка Windows</li></ul>
-            </article>
-            <article class="panel" id="svc-1" role="tabpanel" aria-labelledby="tab-1" data-i="1">
+            </div>
+            <div class="panel" id="svc-1" role="tabpanel" aria-labelledby="tab-1" data-i="1">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="9" width="40" height="27" rx="3" pathLength="100"/><path d="M18 44h16M26 36v8" pathLength="100"/><path d="M22 17l10 6-4.5 1.2L30 29l-2 1-2.6-4.6L22 28z" pathLength="100"/></svg>
               <h3 class="panel__t">Удалённая помощь и консультации</h3>
               <p>Техподдержка без выезда: поставлю программы, удалю вирусы, настрою систему. Вам нужен только интернет.</p>
               <a class="panel__link" href="https://komputernyi-master.ru/udalennaya-pomosh/">Как это работает</a>
-            </article>
-            <article class="panel" id="svc-2" role="tabpanel" aria-labelledby="tab-2" data-i="2">
+            </div>
+            <div class="panel" id="svc-2" role="tabpanel" aria-labelledby="tab-2" data-i="2">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 20a26 26 0 0 1 36 0" pathLength="100"/><path d="M14 27a17 17 0 0 1 24 0" pathLength="100"/><path d="M20 34a8 8 0 0 1 12 0" pathLength="100"/><circle cx="26" cy="41" r="2" pathLength="100"/></svg>
               <h3 class="panel__t">Настройка сетевого оборудования</h3>
               <p>Подключу интернет, настрою роутер, модем и репитер. Увеличу радиус действия Wi-Fi.</p>
-            </article>
-            <article class="panel" id="svc-3" role="tabpanel" aria-labelledby="tab-3" data-i="3">
+            </div>
+            <div class="panel" id="svc-3" role="tabpanel" aria-labelledby="tab-3" data-i="3">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="10" y="8" width="32" height="36" rx="4" pathLength="100"/><circle cx="26" cy="23" r="8" pathLength="100"/><path d="M26 23l5-4M15 38h4" pathLength="100"/></svg>
               <h3 class="panel__t">Восстановление утерянных данных</h3>
               <p>Верну случайно удалённые файлы и данные с повреждённых жёстких дисков, флешек и телефонов.</p>
-            </article>
-            <article class="panel" id="svc-4" role="tabpanel" aria-labelledby="tab-4" data-i="4">
+            </div>
+            <div class="panel" id="svc-4" role="tabpanel" aria-labelledby="tab-4" data-i="4">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><rect x="6" y="10" width="40" height="32" rx="3" pathLength="100"/><path d="M6 18h40M11 14h1M15 14h1" pathLength="100"/><path d="M13 26h14M13 32h10M33 25h7v10h-7z" pathLength="100"/></svg>
               <h3 class="panel__t">Создание и продвижение сайтов</h3>
               <p>От лендинга до интернет-магазина, с продвижением в поиске и соцсетях: SEO, SMO, SMM.</p>
-            </article>
-            <article class="panel" id="svc-5" role="tabpanel" aria-labelledby="tab-5" data-i="5">
+            </div>
+            <div class="panel" id="svc-5" role="tabpanel" aria-labelledby="tab-5" data-i="5">
               <svg class="panel__ic" viewBox="0 0 52 52" aria-hidden="true"><path d="M8 40l11-12 8 7 15-17" pathLength="100"/><path d="M34 18h8v8" pathLength="100"/><path d="M8 46h36" pathLength="100"/></svg>
               <h3 class="panel__t">Продвижение бренда и товаров</h3>
               <p>Больше продаж и доверия к бренду через социальные сети и поисковые системы.</p>
-            </article>
-            <article class="panel panel--ask" id="svc-6" role="tabpanel" aria-labelledby="tab-6" data-i="6">
+            </div>
+            <div class="panel panel--ask" id="svc-6" role="tabpanel" aria-labelledby="tab-6" data-i="6">
               <h3 class="panel__t">Не нашли свою проблему?</h3>
               <p>Опишите, что случилось. Подскажу, как решить, даже если этого нет в списке.</p>
               <a class="btn btn--primary" data-magnetic href="https://api.whatsapp.com/send/?phone=79024089022&amp;text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%9F%D0%B8%D1%88%D1%83+%D0%B2%D0%B0%D0%BC+%D1%81+%D1%81%D0%B0%D0%B9%D1%82%D0%B0+komputernyi-master+%D0%95%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81." target="_blank" rel="noopener">Описать проблему</a>
-            </article>
+            </div>
           </div>
         </div>
       </div>
